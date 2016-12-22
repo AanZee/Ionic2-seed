@@ -4,6 +4,10 @@
   "homepage": "http://ionicframework.com/",
   "private": true,
   "scripts": {
+    // "keys": "./scripts/keys.js",
+    // "sign": "./scripts/sign.js",
+    // "upload": "./scripts/upload.js",
+
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
     "ionic:build": "ionic-app-scripts build",
@@ -36,7 +40,9 @@
     "cordova-plugin-console",
     "cordova-plugin-device",
     "cordova-plugin-splashscreen",
-    "ionic-plugin-keyboard"
+    "ionic-plugin-keyboard",
+    "cordova-plugin-inappbrowser",
+    "cordova-plugin-safariviewcontroller"
   ],
   "cordovaPlatforms": [
     "ios",
