@@ -4,8 +4,7 @@ import { InAppBrowser, SafariViewController } from 'ionic-native';
 @Injectable()
 export class WebPopup {
 
-    constructor(
-    ) {
+    constructor() {
     }
 
     open(url) {
