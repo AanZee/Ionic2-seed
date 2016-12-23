@@ -1,5 +1,8 @@
 import { NgModule, ErrorHandler, APP_INITIALIZER } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { HttpModule, Http } from '@angular/http';
+import { TranslateModule, TranslateStaticLoader, TranslateLoader, MissingTranslationHandler, MissingTranslationHandlerParams } from 'ng2-translate';
+
 import { MyApp } from './app.component';
 
 // API providers
@@ -17,12 +20,23 @@ import { WebPopup } from '../providers/utilities/web-popup';
 // Pipes
 
 // Components
+import { ScrollShadow } from '../components/scroll-shadow/scroll-shadow';
 
 // Pages
 import { HomePage } from '../pages/home/home';
 
 export function httpErrorHandler(httpErrorHandler: HttpErrorHandler) {
     return () => {}
+}
+
+export function createTranslateLoader(http: Http) {
+    return new TranslateStaticLoader(http, './assets/i18n', '.json');
+}
+
+export class MyMissingTranslationHandler implements MissingTranslationHandler {
+    handle(params: MissingTranslationHandlerParams) {
+        return '...';
+    }
 }
 
 @NgModule({
@@ -32,6 +46,7 @@ export function httpErrorHandler(httpErrorHandler: HttpErrorHandler) {
         // Pipes
 
         // Components
+        ScrollShadow,
 
         // Pages
         HomePage
@@ -39,6 +54,12 @@ export function httpErrorHandler(httpErrorHandler: HttpErrorHandler) {
     imports: [
         IonicModule.forRoot(MyApp, {
             // backButtonText: ''
+        }),
+        HttpModule,
+        TranslateModule.forRoot({
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [Http]
         })
     ],
     bootstrap: [IonicApp],
@@ -62,6 +83,7 @@ export function httpErrorHandler(httpErrorHandler: HttpErrorHandler) {
         // ExampleProvider,
 
         { provide: ErrorHandler, useClass: IonicErrorHandler },
+        { provide: MissingTranslationHandler, useClass: MyMissingTranslationHandler },
         {
             provide: APP_INITIALIZER,
             useFactory: httpErrorHandler, //this must be 'static' therefore definition below

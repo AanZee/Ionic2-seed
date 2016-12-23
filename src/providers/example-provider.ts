@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Observable } from "rxjs/Rx";
+
 import { ApiGateway } from "./utilities/api/api-gateway";
 import { CacheRequest } from "./utilities/cache-request";
 import { SETTINGS } from './utilities/app-settings';
-import { Observable } from "rxjs/Rx";
 
 @Injectable()
 export class ExampleProvider {
