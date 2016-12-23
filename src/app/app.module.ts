@@ -35,6 +35,7 @@ export function createTranslateLoader(http: Http) {
 
 export class MyMissingTranslationHandler implements MissingTranslationHandler {
     handle(params: MissingTranslationHandlerParams) {
+        console.warn('Missing translation', params);
         return '...';
     }
 }
