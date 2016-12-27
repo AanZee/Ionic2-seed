@@ -7,7 +7,7 @@ This project is a custom seed for Ionic 2 applications.
 This project can be, but should not be used on it's own. It is designed to be used to start a new Ionic 2 project with the following command.
 
 ```bash
-$ ionic start <project-name> --v2 <repo-url>
+$ ionic start <project-name> --v2 https://github.com/AanZee/Ionic2-seed
 ```
 
 You may encounter errors like "`Current working directory is not a Cordova-based project`".
