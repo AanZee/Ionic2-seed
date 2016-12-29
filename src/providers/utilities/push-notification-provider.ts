@@ -11,6 +11,7 @@ declare var FCMPlugin;
         - run 'ionic build android'
     - IOS: After creating an ios build folder:
         - copy 'src/assets/GoogleService-Info.plist' into the root of the Xcode project.
+        - enable push notification is Xcode project
  */
 
 @Injectable()
@@ -52,11 +53,6 @@ export class PushNotificationProvider {
         });
     }
 
-    /*
-        Method has values:
-            data
-            isInForeground
-     */
     subscribeToNotifications(key: string, method: any): void {
         if (this.subscribers[key]) {
             console.log('overriding notification callback for key', key);
