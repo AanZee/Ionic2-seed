@@ -44,7 +44,8 @@
         "cordova-plugin-splashscreen",
         "ionic-plugin-keyboard",
         "cordova-plugin-inappbrowser",
-        "cordova-plugin-safariviewcontroller"
+        "cordova-plugin-safariviewcontroller",
+        "cordova-plugin-fcm"
     ],
     "cordovaPlatforms": [
         "ios",

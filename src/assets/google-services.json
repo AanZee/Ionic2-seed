@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "522191827698",
+    "firebase_url": "https://ionic2-seed-fcm.firebaseio.com",
+    "project_id": "ionic2-seed-fcm",
+    "storage_bucket": "ionic2-seed-fcm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522191827698:android:6c6013e5d6845557",
+        "android_client_info": {
+          "package_name": "nl.steven.ionic2seed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "522191827698-184eluvuqhvs690anouf2efhmu96p3ae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsZD3E8CCRaC7q-aIiSVb6mmjRSk2ulQA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
