@@ -6,11 +6,9 @@ declare var FCMPlugin;
 /*
     TODO:
     - replace 'src/assets/google-services.json' and 'src/assets/GoogleService-Info.plist' with correct files
-    - ANDROID: After creating an android build folder:
-        - copy 'src/assets/google-services.json' to 'platforms/android/' folder
-        - run 'ionic build android'
+    - ANDROID: All files are copied automagically!
     - IOS: After creating an ios build folder:
-        - copy 'src/assets/GoogleService-Info.plist' into the root of the Xcode project.
+        - copy 'platforms/ios/GoogleService-Info.plist' into the root of the Xcode project (drag/drop).
         - enable push notification is Xcode project
  */
 

@@ -13,6 +13,9 @@
         "ionic:build": "ionic-app-scripts build",
         "ionic:serve": "ionic-app-scripts serve"
     },
+    "config": {
+        "ionic_copy": "./config/copy.config.js"
+    },
     "dependencies": {
         "@angular/common": "2.2.1",
         "@angular/compiler": "2.2.1",
@@ -33,7 +36,7 @@
         "ng2-translate": "5.0.0"
     },
     "devDependencies": {
-        "@ionic/app-scripts": "0.0.47",
+        "@ionic/app-scripts": "0.0.46",
         "typescript": "2.0.9"
     },
     "cordovaPlugins": [

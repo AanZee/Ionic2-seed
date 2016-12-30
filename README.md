@@ -22,10 +22,12 @@ This should resolve the issues and make your project ready for use.
 
 ## This project includes...
 
+ * Push notifications (via Google Firebase)
+ * A translation library. Visit [ng2-translate](https://github.com/ocombe/ng2-translate) for more information
+ * A component to add a scroll shadow to an element
  * Providers
+    * to manage push notifications
     * to make API requests
     * to make and cache API requests
     * to store data in phone's storage
     * to open a URL in a browser popup (uses InAppBrowser or SafariViewController)
- * A translation library. Visit [ng2-translate](https://github.com/ocombe/ng2-translate) for more information
- * A component to add a scroll shadow to an element
