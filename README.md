@@ -11,7 +11,7 @@ $ ionic start <project-name> --v2 https://github.com/AanZee/Ionic2-seed
 ```
 
 You may encounter errors like "`Current working directory is not a Cordova-based project`".
-This is caused by the `www` folder that is missing initally and is easily resolved by running the following commands.
+This is caused by the `www` folder that is missing initially and is easily resolved by running the following commands.
 
 ```bash
 $ npm install
@@ -31,3 +31,16 @@ This should resolve the issues and make your project ready for use.
     * to make and cache API requests
     * to store data in phone's storage
     * to open a URL in a browser popup (uses InAppBrowser or SafariViewController)
+
+
+## Notes
+
+For push notifications to work some manual steps need to be completed:
+
+ * replace 'src/assets/google-services.json' and 'src/assets/GoogleService-Info.plist' with correct files
+ * Android:
+    * All files are copied automagically!
+ * iOS:
+    * After creating an iOS build folder:
+        * copy 'platforms/ios/GoogleService-Info.plist' into the root of the Xcode project (drag/drop).
+        * enable push notification is Xcode project
