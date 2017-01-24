@@ -13,6 +13,7 @@ import { ApiGateway } from '../providers/utilities/api/api-gateway';
 // Utility providers
 import { StorageProvider } from '../providers/utilities/storage-provider';
 import { CacheRequest } from '../providers/utilities/cache-request';
+import { GAProvider } from '../providers/utilities/ga-provider';
 import { WebPopup } from '../providers/utilities/web-popup';
 import { PushNotificationProvider } from '../providers/utilities/push-notification-provider';
 // App providers
@@ -80,6 +81,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
         // Utility providers
         StorageProvider,
         CacheRequest,
+		GAProvider,
         WebPopup,
         PushNotificationProvider,
         // App providers

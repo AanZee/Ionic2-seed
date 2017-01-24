@@ -4,7 +4,6 @@ import { LoadingController, Loading } from 'ionic-angular';
 import { Observable } from "rxjs/Rx";
 import { Subject } from "rxjs/Subject";
 
-import { Oauth } from './oauth';
 import { AuthToken } from "./auth-token";
 
 import 'rxjs/add/operator/map';
@@ -39,9 +38,8 @@ export class ApiGateway {
     constructor(
         private http: Http,
         private loadingCtrl: LoadingController,
-        private authToken: AuthToken,
-        private oauth: Oauth
-    ) { 
+        private authToken: AuthToken
+    ) {
         // Create our observables from the subjects
         this.errors$ = this.errorsSubject.asObservable();
         this.pendingCommands$ = this.pendingCommandsSubject.asObservable();
@@ -79,26 +77,51 @@ export class ApiGateway {
     }
 
 
-    private request(options: ApiGatewayOptions, hideLoader?: boolean): Observable<any> {
+    // I perform a PUT request to the API. If both the params and data
+    // are present, the params will be appended as URL search parameters
+    // and the data will be serialized as a JSON payload. If only the
+    // data is present, it will be serialized as a JSON payload. Returns
+    // a stream.
+    put(url: string, params: any, data: any, hideLoader?: boolean): Observable<any> {
+        if (!data) {
+            data = params;
+            params = {};
+        }
+        let options = new ApiGatewayOptions();
+        options.method = RequestMethod.Put;
+        options.url = url;
+        options.params = params;
+        options.data = data;
+        return this.request(options, hideLoader);
+    }
 
+
+    // I perform a DELETE request to the API. If both the params and data
+    // are present, the params will be appended as URL search parameters
+    // and the data will be serialized as a JSON payload. If only the
+    // data is present, it will be serialized as a JSON payload. Returns
+    // a stream.
+    delete(url: string, params: any, data: any, hideLoader?: boolean): Observable<any> {
+        if (!data) {
+            data = params;
+            params = {};
+        }
+        let options = new ApiGatewayOptions();
+        options.method = RequestMethod.Delete;
+        options.url = url;
+        options.params = params;
+        options.data = data;
+
+        return this.request(options, hideLoader);
+    }
+
+
+    private request(options: ApiGatewayOptions, hideLoader?: boolean): Observable<any> {
         options.method = (options.method || RequestMethod.Get);
         options.url = (options.url || "");
         options.headers = (options.headers || {});
         options.params = (options.params || {});
         options.data = (options.data || {});
-
-        //add required Oauth parameters
-        let oauthParams = this.oauth.addOauthParameters();
-        for (let key in oauthParams) {
-            options.params[key] = oauthParams[key];
-        }
-
-        //calculate signature and add to params
-        let parsedUrl = this.oauth.parseUrl(options.url);
-        options.params['oauth_signature'] = this.oauth.generateOauthSignature(
-            RequestMethod[options.method],
-            parsedUrl.baseUrl, 
-            this.oauth.combineHash(options.params, parsedUrl.params));
 
         this.interpolateUrl(options);
         //this.addXsrfToken(options);
@@ -110,7 +133,7 @@ export class ApiGateway {
         requestOptions.headers = options.headers;
         requestOptions.search = this.buildUrlSearchParams(options.params);
         requestOptions.body = JSON.stringify(options.data);
-        
+
         let token = this.authToken.getToken();
         if (token) {
             requestOptions.headers['Authorization'] = 'Bearer ' + token;
@@ -123,10 +146,11 @@ export class ApiGateway {
         }
 
         if (this.pendingRequestsCount === 0) {
-            if (!hideLoader) {
+            if (!hideLoader && !this.loader) {
                 this.loader = this.loadingCtrl.create({
                     showBackdrop: false,
-                    spinner: 'circles'
+                    spinner: 'circles',
+					duration: 15000
                 });
                 this.loader.present();
             }
@@ -134,25 +158,27 @@ export class ApiGateway {
         this.pendingRequestsCount++;
 
         let stream = this.http.request(options.url, requestOptions)
-            .catch((error: any) => {
-                this.errorsSubject.next(error);
-                return Observable.throw(this.unwrapHttpError(error));
-            })
-            .map(this.unwrapHttpValue)
-            .catch((error: any) => {
-                return Observable.throw(error);
-            })
-            .finally(() => {
-                this.pendingRequestsCount--;
-                if (this.pendingRequestsCount === 0) {
-                    if (!hideLoader) {
-                        this.loader.dismiss();
-                    }
+        .catch((error: any) => {
+            this.errorsSubject.next(error);
+            return Observable.throw(this.unwrapHttpError(error));
+        })
+        .map(this.unwrapHttpValue)
+        .catch((error: any) => {
+            return Observable.throw(error);
+        })
+        .finally(() => {
+            this.pendingRequestsCount--;
+            if (this.pendingRequestsCount === 0) {
+                if (!hideLoader) {
+                    this.loader.dismiss().then(() => {
+						this.loader = null;
+					});
                 }
-                if (isCommand) {
-                    this.pendingCommandsSubject.next(--this.pendingCommandCount);
-                }
-            });
+            }
+            if (isCommand) {
+                this.pendingCommandsSubject.next(--this.pendingCommandCount);
+            }
+        });
 
         return stream;
     }
@@ -226,10 +252,15 @@ export class ApiGateway {
 
     private unwrapHttpError(error: any): any {
         try {
+            let original = {};
+            if (error._body) {
+                original = JSON.parse(error._body);
+            }
             return ({
                 status: error.status,
                 statusText: error.statusText,
-                url: error.url
+                url: error.url,
+                message: original
             });
         } catch (jsonError) {
             return ({

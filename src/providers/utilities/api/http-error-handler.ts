@@ -21,7 +21,6 @@ export class HttpErrorHandler {
                 }
                 if (value.status === 401) {
                     console.log('Not Authorized');
-                    this.events.publish('user:logout');
                 }
             });
     }

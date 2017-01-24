@@ -18,7 +18,6 @@ export class StorageProvider {
         });
     }
 
-
     /**
      * Invalidate Cache
      * @returns {Promise<any>}
@@ -51,7 +50,6 @@ export class StorageProvider {
             }).catch(err => reject(err));
         });
     }
-
 
     /**
      * Set Cached Item
