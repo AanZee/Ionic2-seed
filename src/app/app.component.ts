@@ -3,6 +3,8 @@ import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { TranslateService } from 'ng2-translate';
 
+import { LocalNotificationProvider } from '../providers/utilities/local-notification-provider';
+
 import { HomePage } from '../pages/home/home';
 
 @Component({
@@ -24,5 +26,7 @@ export class MyApp {
             translate.setDefaultLang('en');
             translate.use('en');
         });
+
+		LocalNotificationProvider.schedule({});
     }
 }

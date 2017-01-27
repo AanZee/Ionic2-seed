@@ -1,20 +1,27 @@
 var orgCopyConfig = require('@ionic/app-scripts/config/copy.config');
 
 //Copy Firebase config file to android build folder
-orgCopyConfig.include.push({
-  src: 'src/assets/google-services.json',
-  dest: 'platforms/android/google-services.json'
-});
+let copyGopogleServicesAndroid = {
+	src: ['{{ROOT}}/src/assets/google-services.json'],
+	dest: '{{ROOT}}/platforms/android'
+}
+orgCopyConfig.copyGopogleServicesAndroid = copyGopogleServicesAndroid;
 
-//Copy Firebase config file to ios build folder
-orgCopyConfig.include.push({
-  src: 'src/assets/GoogleService-Info.plist',
-  dest: 'platforms/ios/GoogleService-Info.plist'
-});
+let copyGopogleServicesIos = {
+	src: ['{{ROOT}}/src/assets/GoogleService-Info.plist'],
+	dest: '{{ROOT}}/platforms/ios'
+}
+orgCopyConfig.copyGopogleServicesIos = copyGopogleServicesIos;
 
-// let chartCopy = {
-//   src: '{{ROOT}}/node_modules/chart.js/dist/Chart.js',
-//   dest: '{{BUILD}}'
-// };
+//Copy Firebase config file to android build folder
+let copyGopogleServicesAndroidToRoot = {
+	src: ['{{ROOT}}/src/assets/google-services.json'],
+	dest: '{{ROOT}}'
+}
+orgCopyConfig.copyGopogleServicesAndroidToRoot = copyGopogleServicesAndroidToRoot;
 
-// orgCopyConfig.copyChartsLib = chartCopy;
+let copyGopogleServicesIosToRoot = {
+	src: ['{{ROOT}}/src/assets/GoogleService-Info.plist'],
+	dest: '{{ROOT}}'
+}
+orgCopyConfig.copyGopogleServicesIosToRoot = copyGopogleServicesIosToRoot;

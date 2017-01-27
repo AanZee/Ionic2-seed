@@ -27,13 +27,9 @@ export class HomePage {
                 console.log('token', token);
             });
             this.pushNotification.subscribeToTopic('ionic2-seed');
-            this.pushNotification.subscribeToNotifications('home', (data: any, fromForeground: boolean) => {
-                console.log(data, fromForeground);
+            this.pushNotification.onNotification().subscribe((data: any) => {
+                console.log(data);
             });
         });
-    }
-
-    ionViewWillLeave(): void {
-        this.pushNotification.unsubscribeFromNotifications('home');
     }
 }

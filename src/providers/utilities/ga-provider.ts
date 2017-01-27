@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { GoogleAnalytics } from 'ionic-native';
 
-import { SETTINGS } from '../../settings/settings';
-
 @Injectable()
 export class GAProvider {
 	private static isReady: boolean = false;
 	private static queue: string[] = [];
 
-	constructor() {
-		GoogleAnalytics.startTrackerWithId(SETTINGS.GA_ID).then(() => {
+	constructor() {}
+
+	static startTrackerWithId(id: string) {
+		GoogleAnalytics.startTrackerWithId(id).then(() => {
 			console.log('GA ready');
 			GAProvider.isReady = true;
 			while(GAProvider.queue.length) {
