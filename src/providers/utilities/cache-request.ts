@@ -72,6 +72,11 @@ export class CacheRequest {
         this.requests = {};
     }
 
+    public clearRequestCache(method: string): void {
+        delete this.requests[method];
+        this.save();
+    }
+
     private serverRequest(endpoint: string, method: string, hideLoader?: boolean): Observable<any> {
         return this.apiGateway.get(
             endpoint + method, {}, hideLoader
