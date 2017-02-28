@@ -73,8 +73,8 @@ export class PushNotificationProvider {
 			}
 			customSettings.dateReceived = Date.now();
 			object = {
-				title: data.notification.title,
-				content: data.notification.body,
+				title: data.aps.alert.title,
+				content: data.aps.alert.body,
 				fromBackground: data.wasTapped,
 				customSettings: customSettings,
 				originalObject: data
