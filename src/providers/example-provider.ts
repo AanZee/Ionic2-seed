@@ -15,13 +15,13 @@ export class ExampleProvider {
     }
 
     // Direct API calls
-    getData(hideLoader?: boolean): Observable<any> {
+    public getData(hideLoader?: boolean): Observable<any> {
         let method = 'data.get';
         return this.apiGateway.get(
             SETTINGS.API_ENDPOINT + method, {}, !!hideLoader
         );
     }
-    postData(post_data: any, hideLoader?: boolean): Observable<any> {
+    public postData(post_data: any, hideLoader?: boolean): Observable<any> {
         let method = 'data.post';
         return this.apiGateway.post(
             SETTINGS.API_ENDPOINT + method, {}, post_data, !!hideLoader
@@ -29,7 +29,7 @@ export class ExampleProvider {
     }
 
     // Cache API calls
-    fetch(): Promise<any> {
+    public fetch(): Promise<any> {
         return new Promise((resolve: any, reject: any) => {
             let method = 'data.get';
             this.cacheRequest.fetch(SETTINGS.API_ENDPOINT, method, false).then((data: any) => {

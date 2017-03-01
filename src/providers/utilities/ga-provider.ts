@@ -1,3 +1,9 @@
+/**********************************************
+ * Requires:                                  *
+ * - `cordova-plugin-google-analytics` plugin *
+ **********************************************/
+
+
 import { Injectable } from '@angular/core';
 import { GoogleAnalytics } from 'ionic-native';
 
@@ -8,7 +14,12 @@ export class GAProvider {
 
 	constructor() {}
 
-	static startTrackerWithId(id: string) {
+	/**
+	 * Initiate tracker. Work queue when ready
+	 * @param  {string} id [description]
+	 * @return {[type]}    [description]
+	 */
+	public static startTrackerWithId(id: string) {
 		GoogleAnalytics.startTrackerWithId(id).then(() => {
 			console.log('GA ready');
 			GAProvider.isReady = true;
@@ -20,7 +31,11 @@ export class GAProvider {
 		});
 	}
 
-	static trackView(key: string): void {
+	/**
+	 * Track a view with a name. Add to a queue if tracker has not started yet
+	 * @param {string} key [description]
+	 */
+	public static trackView(key: string): void {
 		if (GAProvider.isReady) {
 			GoogleAnalytics.trackView(key);
 		} else {

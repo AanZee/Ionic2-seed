@@ -1,17 +1,34 @@
+/***********************************************************************************************************
+ * Requires:                                                                                               *
+ * - `cordova-plugin-fcm` plugin                                                                           *
+ * - Correct FCM files in 'src/assets/google-services.json' and 'src/assets/GoogleService-Info.plist'      *
+ *     - ANDROID: All files are copied automagically with script below                                     *
+ *     - IOS: After creating an ios build folder:                                                          *
+ *         - copy 'platforms/ios/GoogleService-Info.plist' into the root of the Xcode project (drag/drop). *
+ *         - enable push notification in Xcode project                                                     *
+ * - Add to `config/copy.config.js`                                                                        *
+ * ```                                                                                                     *
+ *     //Copy Firebase config file build folder                                                            *
+ *     let copyGopogleServicesAndroid = {                                                                  *
+ *         src: ['{{ROOT}}/src/assets/google-services.json'],                                              *
+ *         dest: '{{ROOT}}/platforms/android'                                                              *
+ *     }                                                                                                   *
+ *     orgCopyConfig.copyGopogleServicesAndroid = copyGopogleServicesAndroid;                              *
+ *                                                                                                         *
+ *     let copyGopogleServicesIos = {                                                                      *
+ *         src: ['{{ROOT}}/src/assets/GoogleService-Info.plist'],                                          *
+ *         dest: '{{ROOT}}/platforms/ios'                                                                  *
+ *     }                                                                                                   *
+ *     orgCopyConfig.copyGopogleServicesIos = copyGopogleServicesIos;                                      *
+ * ```                                                                                                     *
+ ***********************************************************************************************************/
+
+
 import { Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { Observable } from "rxjs/Rx";
 
 declare var FCMPlugin;
-
-/*
-	TODO:
-	- replace 'src/assets/google-services.json' and 'src/assets/GoogleService-Info.plist' with correct files
-	- ANDROID: All files are copied automagically!
-	- IOS: After creating an ios build folder:
-		- copy 'platforms/ios/GoogleService-Info.plist' into the root of the Xcode project (drag/drop).
-		- enable push notification is Xcode project
- */
 
 @Injectable()
 export class PushNotificationProvider {
@@ -47,7 +64,11 @@ export class PushNotificationProvider {
 		});
 	}
 
-	init(): Promise<any> {
+	/**
+	 * Init the provider
+	 * @return {Promise<any>} [description]
+	 */
+	public init(): Promise<any> {
 		return new Promise((resolve: any, reject: any) => {
 			if (!this.isReady) {
 				this.readyResolve = resolve;
@@ -57,10 +78,18 @@ export class PushNotificationProvider {
 		});
 	}
 
-	onNotification(): Observable<any> {
+	/**
+	 * Returns observable that is fired on every notification received
+	 * @return {Observable<any>} [description]
+	 */
+	public onNotification(): Observable<any> {
 		return this.notificationObservable;
 	}
 
+	/**
+	 * Notification callback method
+	 * @param {any} data [description]
+	 */
 	private onNotificationReceived(data: any): void {
 		console.log('Received notification', data);
 		let object: any = {};
@@ -98,7 +127,11 @@ export class PushNotificationProvider {
 		this.observer.next(object);
 	}
 
-	getToken(): Promise<string> {
+	/**
+	 * Retrieves the FCM token
+	 * @return {Promise<string>} [description]
+	 */
+	public getToken(): Promise<string> {
 		return new Promise((resolve: any, reject: any) => {
 			if (this.isReady) {
 				FCMPlugin.getToken((token: string) => {
@@ -115,13 +148,21 @@ export class PushNotificationProvider {
 		});
 	}
 
-	subscribeToTopic(topic: string): void {
+	/**
+	 * Subscribes FCM to a topic
+	 * @param {string} topic [description]
+	 */
+	public subscribeToTopic(topic: string): void {
 		if (this.isReady) {
 			FCMPlugin.subscribeToTopic(topic);
 		}
 	}
 
-	unsubscribeFromTopic(topic: string): void {
+	/**
+	 * Unsubscribes FCM from a topic
+	 * @param {string} topic [description]
+	 */
+	public unsubscribeFromTopic(topic: string): void {
 		if (this.isReady) {
 			FCMPlugin.unsubscribeFromTopic(topic);
 		}

@@ -1,3 +1,9 @@
+/************************************************************
+ * Requires:                                                *
+ * - `de.appplant.cordova.plugin.local-notification` plugin *
+ ************************************************************/
+
+
 import { Injectable } from '@angular/core';
 import { LocalNotifications } from 'ionic-native';
 import { Platform } from 'ionic-angular';
@@ -29,6 +35,11 @@ export class LocalNotificationProvider {
 		});
 	}
 
+	/**
+	 * Schedule a local notification
+	 * @param  {[type]} options [description]
+	 * @return {[type]}         [description]
+	 */
 	public static schedule(options) {
 		options = {
 			id: 1,
@@ -41,10 +52,18 @@ export class LocalNotificationProvider {
 		LocalNotifications.schedule(options);
 	}
 
+	/**
+	 * Returns observable that is fired on every notification received
+	 * @return {Observable<any>} [description]
+	 */
 	public onNotification(): Observable<any> {
 		return this.notificationObservable;
 	}
 
+	/**
+	 * Notification callback method
+	 * @param {any} data [description]
+	 */
 	private onNotificationReceived(data: any): void {
 		console.log('Received notification', data);
 		let object: any = {};

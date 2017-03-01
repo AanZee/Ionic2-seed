@@ -1,3 +1,10 @@
+/**************************************************
+ * Requires:                                      *
+ * - `cordova-plugin-inappbrowser` plugin         *
+ * - `cordova-plugin-safariviewcontroller` plugin *
+ **************************************************/
+
+
 import { Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { InAppBrowser, SafariViewController } from 'ionic-native';
@@ -7,10 +14,13 @@ export class WebPopup {
 
 	constructor(
 		public platform: Platform
-	) {
-	}
+	) {}
 
-	open(url) {
+	/**
+	 * Open an url in a inApp browser
+	 * @param {[type]} url [description]
+	 */
+	public open(url): void {
 		if (this.platform.is('cordova')) {
 			SafariViewController.isAvailable().then((available: boolean) => {
 				if (available) {
