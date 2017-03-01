@@ -4,7 +4,7 @@ import { Platform } from 'ionic-angular';
 @Directive({
 	selector: '[scroll-shadow]'
 })
-export class ScrollShadow {
+export class ComponentScrollShadow {
 
 	constructor(
 		private elem: ElementRef,

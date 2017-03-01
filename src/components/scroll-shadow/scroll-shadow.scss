@@ -1,20 +1,24 @@
+$scroll-shadow-color: #696868 !default;
+$scroll-shadow-color-dark: rgba(0, 0, 0, 0.1) !default;
+$scroll-shadow-color-light: rgba(255, 255, 255, 0) !default;
+
 [scroll-shadow] {
 	/* Scroll Shadow implementation :D */
 	border-radius: 1px;
 	background:
 		/* Shadow covers */
-		linear-gradient(white 30%, rgba(255,255,255,0)),
-		linear-gradient(rgba(255,255,255,0), white 70%) 0 100%,
+		linear-gradient(white 30%, $scroll-shadow-color-light),
+		linear-gradient($scroll-shadow-color-light, white 70%) 0 100%,
 		/* Shadows */
-		linear-gradient(rgba(0,0,0,0.1) 0%, rgba(255,255,255,0) 50%),
-		linear-gradient(rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 100%) 0 100%;
+		linear-gradient($scroll-shadow-color 0%, $scroll-shadow-color-light 50%),
+		linear-gradient($scroll-shadow-color-light 50%, $scroll-shadow-color 100%) 0 100%;
 	background:
 		/* Shadow covers */
-		linear-gradient(white 30%, rgba(255,255,255,0)),
-		linear-gradient(rgba(255,255,255,0), white 70%) 0 100%,
+		linear-gradient(white 30%, $scroll-shadow-color-light),
+		linear-gradient($scroll-shadow-color-light, white 70%) 0 100%,
 		/* Shadows */
-		linear-gradient(rgba(0,0,0,0.1) 0%, rgba(255,255,255,0) 50%),
-		linear-gradient(rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 100%) 0 100%;
+		linear-gradient($scroll-shadow-color 0%, $scroll-shadow-color-light 50%),
+		linear-gradient($scroll-shadow-color-light 50%, $scroll-shadow-color 100%) 0 100%;
 	background-repeat: no-repeat;
 	background-color: white;
 	background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
@@ -23,6 +27,6 @@
 }
 
 [scroll-shadow].forced {
-	box-shadow: inset  0  6px 6px -6px #696868,
-	inset  0 -6px 6px -6px #696868;
+	box-shadow: inset  0  6px 6px -6px $scroll-shadow-color,
+				inset  0 -6px 6px -6px $scroll-shadow-color;
 }

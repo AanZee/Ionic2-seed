@@ -22,7 +22,7 @@ import { PushNotificationProvider } from '../providers/utilities/push-notificati
 // Pipes
 
 // Components
-import { ScrollShadow } from '../components/scroll-shadow/scroll-shadow';
+import { ComponentScrollShadow } from '../components/scroll-shadow/scroll-shadow';
 
 // Pages
 import { HomePage } from '../pages/home/home';
@@ -49,7 +49,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
         // Pipes
 
         // Components
-        ScrollShadow,
+		ComponentScrollShadow,
 
         // Pages
         HomePage
