@@ -1,0 +1,12 @@
+horizontal-overflow-container {
+	.horizontal-overflow-container {
+		display: block;
+		overflow-x: auto;
+		white-space: nowrap;
+
+		& > * {
+			display: inline-block;
+			vertical-align: middle;
+		}
+	}
+}
