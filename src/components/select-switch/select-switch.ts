@@ -4,7 +4,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 	selector: 'select-switch',
 	templateUrl: 'select-switch.html'
 })
-export class SelectSwitchComponent {
+export class ComponentSelectSwitch {
 	private selectedOption: number = 0;
 
 	@Input() options: string[] = [];

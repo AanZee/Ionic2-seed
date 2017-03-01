@@ -5,7 +5,7 @@ import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core
 	selector: 'button-toolbar',
 	templateUrl: 'button-toolbar.html'
 })
-export class ButtonToolbar {
+export class ComponentButtonToolbar {
 	@ViewChild('buttonToolbar') button_toolbar: any;
 	private selectedOption: number = 0;
 

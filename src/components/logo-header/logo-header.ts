@@ -4,7 +4,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   selector: '[logo-header]',
   templateUrl: 'logo-header.html',
 })
-export class LogoHeader {
+export class ComponentLogoHeader {
 	private selectedOption: number = 0;
 
 	@Input() modalView: any;
