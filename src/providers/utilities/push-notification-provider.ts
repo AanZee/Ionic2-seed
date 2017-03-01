@@ -9,17 +9,30 @@
  * - Add to `config/copy.config.js`                                                                        *
  * ```                                                                                                     *
  *     //Copy Firebase config file build folder                                                            *
- *     let copyGopogleServicesAndroid = {                                                                  *
+ *     let copyGoogleServicesAndroid = {                                                                   *
  *         src: ['{{ROOT}}/src/assets/google-services.json'],                                              *
  *         dest: '{{ROOT}}/platforms/android'                                                              *
  *     }                                                                                                   *
- *     orgCopyConfig.copyGopogleServicesAndroid = copyGopogleServicesAndroid;                              *
+ *     orgCopyConfig.copyGoogleServicesAndroid = copyGoogleServicesAndroid;                                *
  *                                                                                                         *
- *     let copyGopogleServicesIos = {                                                                      *
+ *     let copyGoogleServicesIos = {                                                                       *
  *         src: ['{{ROOT}}/src/assets/GoogleService-Info.plist'],                                          *
  *         dest: '{{ROOT}}/platforms/ios'                                                                  *
  *     }                                                                                                   *
- *     orgCopyConfig.copyGopogleServicesIos = copyGopogleServicesIos;                                      *
+ *     orgCopyConfig.copyGoogleServicesIos = copyGoogleServicesIos;                                        *
+ *                                                                                                         *
+ *     //Copy Firebase config file to root folder (circumvent an error)                                    *
+ *     let copyGoogleServicesAndroidToRoot = {                                                             *
+ *         src: ['{{ROOT}}/src/assets/google-services.json'],                                              *
+ *         dest: '{{ROOT}}'                                                                                *
+ *     }                                                                                                   *
+ *     orgCopyConfig.copyGoogleServicesAndroidToRoot = copyGoogleServicesAndroidToRoot;                    *
+ *                                                                                                         *
+ *     let copyGoogleServicesIosToRoot = {                                                                 *
+ *         src: ['{{ROOT}}/src/assets/GoogleService-Info.plist'],                                          *
+ *         dest: '{{ROOT}}'                                                                                *
+ *     }                                                                                                   *
+ *     orgCopyConfig.copyGoogleServicesIosToRoot = copyGoogleServicesIosToRoot;                            *
  * ```                                                                                                     *
  ***********************************************************************************************************/
 

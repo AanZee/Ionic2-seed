@@ -15,7 +15,6 @@ import { StorageProvider } from '../providers/utilities/storage-provider';
 import { CacheRequest } from '../providers/utilities/cache-request';
 import { GAProvider } from '../providers/utilities/ga-provider';
 import { WebPopup } from '../providers/utilities/web-popup';
-import { PushNotificationProvider } from '../providers/utilities/push-notification-provider';
 // App providers
 // import { ExampleProvider } from '../providers/example-provider';
 
@@ -83,7 +82,6 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
         CacheRequest,
 		GAProvider,
         WebPopup,
-        PushNotificationProvider,
         // App providers
         // ExampleProvider,
 
