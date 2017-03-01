@@ -1,3 +1,7 @@
+$button-toolbar-font-default: arial, helvetica !default;
+$button-toolbar-font-bold: arial, helvetica !default;
+$button-toolbar-color-active: orange !default;
+
 .button-toolbar {
     width: 100%;
     padding: 0 10px;
@@ -21,18 +25,18 @@
             flex-shrink: 0;
             border-radius: 0;
             border-bottom: 3px solid transparent;
-			font-family: $font-bold;
+			font-family: $button-toolbar-font-bold;
 			font-weight: bold;
 			font-size: 14px;
 			letter-spacing: -0.2px;
 
             &.active {
-                border-color: $color-cta;
+                border-color: $button-toolbar-color-active;
             }
 
             span {
                 height: 50px;
-                font-family: $font-default;
+                font-family: $button-toolbar-font-default;
                 text-transform: uppercase;
             }
         }

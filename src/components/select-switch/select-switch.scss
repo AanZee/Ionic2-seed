@@ -1,4 +1,7 @@
-$color-light: white;
+$select-switch-font-size: 14px !default;
+$select-switch-color-border: gray !default;
+$select-switch-color-active: orange !default;
+$select-switch-color-font-active: white !default;
 
 select-switch {
 	.switch-wrapper {
@@ -21,7 +24,7 @@ select-switch {
 			text-overflow: ellipsis;
 			margin-bottom: 20px;
 			font-weight: 600;
-			font-size: $font-size-100;
+			font-size: $select-switch-font-size;
 
 			&:first-child() {
 				border-radius: 5px 0 0 5px;
@@ -34,18 +37,18 @@ select-switch {
 			}
 
 			&:first-child() + :last-child() {
-				border-left: 1px solid $color-ui-100 !important;
+				border-left: 1px solid $select-switch-color-border !important;
 			}
 
 			&.active {
 				font-weight: 800;
-				background: $color-primary;
-				border: 1px solid $color-primary;
-				color: $color-light;
+				background: $select-switch-color-active;
+				border: 1px solid $select-switch-color-active;
+				color: $select-switch-color-font-active;
 			}
 
 			&:not(.active) {
-				border: 1px solid $color-ui-100;
+				border: 1px solid $select-switch-color-border;
 			}
 		}
 		.input__short & {
