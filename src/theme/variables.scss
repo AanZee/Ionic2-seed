@@ -28,6 +28,8 @@ $color-border:                #9a9a9a;
 $color-background:            #fff;
 $color-danger:                #ff0000;
 
+$font-primary:                arial, helvetica;
+
 
 // Named Color Variables
 // --------------------------------------------------
@@ -77,16 +79,7 @@ $colors: (
 @import "ionic.theme.default";
 
 
-// Ionicons
-// --------------------------------------------------
-// The premium icon font for Ionic. For more info, please see:
-// http://ionicframework.com/docs/v2/ionicons/
-
-@import "ionicons";
-
-
 // Fonts
 // --------------------------------------------------
 
-@import "roboto";
-@import "noto-sans";
+@import "./fonts/fonts";
