@@ -29,7 +29,7 @@ export class S3Upload {
 	// internal subject where uploaded file is stored (after success)
 	private imageSubject = new Subject<any>();
 	// Provide the *public* Observable that clients can subscribe to
-	image$: Observable<any>;
+	public image$: Observable<any>;
 
 	constructor() {
 		this.image$ = this.imageSubject.asObservable();

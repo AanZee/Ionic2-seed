@@ -10,8 +10,8 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class StorageProvider {
-	storage: Storage;
-	user_id: any;
+	private storage: Storage;
+	private user_id: any;
 
 	constructor(
 		private events: Events

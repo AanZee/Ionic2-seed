@@ -1,0 +1,9 @@
+<div class="switch-wrapper">
+	<div
+		class="switch-button"
+		[class.active]="selected == i"
+		*ngFor="let option of options; let i = index"
+		(click)="select(i)">
+		{{option}}
+	</div>
+</div>

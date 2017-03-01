@@ -1,0 +1,9 @@
+<div class="button-toolbar" #buttonToolbar>
+	<div class="quickButtonWrapper">
+		<button ion-button color="light" *ngFor="let button of toolbarButtons; let i = index"
+				[class.active]="selectedOption == i"
+				(click)="select(i)">
+			{{button}}
+		</button>
+	</div>
+</div>

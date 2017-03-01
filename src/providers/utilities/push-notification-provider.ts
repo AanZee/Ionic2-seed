@@ -32,8 +32,8 @@ declare var FCMPlugin;
 
 @Injectable()
 export class PushNotificationProvider {
-	isReady: boolean = false;
-	readyResolve: any;
+	private isReady: boolean = false;
+	private readyResolve: any;
 	private notificationObservable: Observable<any>;
 	private observer: any;
 

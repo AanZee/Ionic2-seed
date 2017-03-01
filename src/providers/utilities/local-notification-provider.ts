@@ -11,8 +11,6 @@ import { Observable } from "rxjs/Rx";
 
 @Injectable()
 export class LocalNotificationProvider {
-	isReady: boolean = false;
-	readyResolve: any;
 	private notificationObservable: Observable<any>;
 	private observer: any;
 
@@ -24,7 +22,7 @@ export class LocalNotificationProvider {
 		});
 
 		LocalNotifications.on('trigger', (notification) => {
-			let data = JSON.parse(notification.data);
+			let data: any = JSON.parse(notification.data);
 			this.onNotificationReceived(data);
 			if (data.runOneTime) {
 				setTimeout(() => {
@@ -40,15 +38,7 @@ export class LocalNotificationProvider {
 	 * @param  {[type]} options [description]
 	 * @return {[type]}         [description]
 	 */
-	public static schedule(options) {
-		options = {
-			id: 1,
-			title: 'Snapaday',
-			text: 'Have you taken your snap today?',
-			at: new Date(Date.now() + (10 * 1000)),
-			every: 'minute',
-			data: { runOneTime: true }
-		}
+	public static schedule(options: any) {
 		LocalNotifications.schedule(options);
 	}
 

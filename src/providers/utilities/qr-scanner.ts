@@ -11,8 +11,8 @@ declare var QRScanner: any;
 
 @Injectable()
 export class QrScanner {
-	isLightOn: boolean = false;
-	isScanning: boolean = false;
+	public isLightOn: boolean = false;
+	public isScanning: boolean = false;
 
 	constructor(
 		private zone: NgZone,
