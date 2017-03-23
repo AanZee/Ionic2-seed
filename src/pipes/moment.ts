@@ -1,3 +1,9 @@
+/**********************************************
+ * Requires:                                  *
+ * - 'moment' module                          *
+ **********************************************/
+
+
 import {Injectable, Pipe} from '@angular/core';
 import { default as moment } from 'moment';
 
