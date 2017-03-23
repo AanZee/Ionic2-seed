@@ -1,8 +1,19 @@
 import { NgModule, ErrorHandler, APP_INITIALIZER } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule, Http } from '@angular/http';
+
+// Ionic native
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
+import { Keyboard } from '@ionic-native/keyboard';
+import { Device } from '@ionic-native/device';
+import { AppVersion } from '@ionic-native/app-version';
+
+// Translate
 import { TranslateModule, TranslateStaticLoader, TranslateLoader, MissingTranslationHandler, MissingTranslationHandlerParams } from 'ng2-translate';
 
+// App
 import { MyApp } from './app.component';
 
 // API providers
@@ -13,8 +24,6 @@ import { ApiGateway } from '../providers/utilities/api/api-gateway';
 // Utility providers
 import { StorageProvider } from '../providers/utilities/storage-provider';
 import { CacheRequest } from '../providers/utilities/cache-request';
-import { GAProvider } from '../providers/utilities/ga-provider';
-import { WebPopup } from '../providers/utilities/web-popup';
 // App providers
 // import { ExampleProvider } from '../providers/example-provider';
 
@@ -57,6 +66,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
         IonicModule.forRoot(MyApp, {
             // backButtonText: ''
         }),
+		IonicStorageModule.forRoot(),
         HttpModule,
         TranslateModule.forRoot({
             provide: TranslateLoader,
@@ -72,6 +82,12 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
         HomePage
     ],
     providers: [
+		// Ionic native
+		SplashScreen,
+		StatusBar,
+		Keyboard,
+		Device,
+		AppVersion,
         // API providers
         Oauth,
         AuthToken,
@@ -80,8 +96,6 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
         // Utility providers
         StorageProvider,
         CacheRequest,
-		GAProvider,
-        WebPopup,
         // App providers
         // ExampleProvider,
 

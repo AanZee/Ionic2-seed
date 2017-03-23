@@ -19,7 +19,7 @@ export class CacheRequest {
 
 	constructor(
 		private apiGateway: ApiGateway,
-		private storageProvider: StorageProvider
+		private storageProvider: StorageProvider,
 	) {}
 
 	/**

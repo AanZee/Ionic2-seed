@@ -51,7 +51,7 @@ export class PushNotificationProvider {
 	private observer: any;
 
 	constructor(
-		public platform: Platform
+		private platform: Platform,
 	) {
 		this.notificationObservable = Observable.create((subscriber) => {
 			this.observer = subscriber;

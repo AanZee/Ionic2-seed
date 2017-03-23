@@ -10,13 +10,12 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class StorageProvider {
-	private storage: Storage;
 	private user_id: any;
 
 	constructor(
-		private events: Events
+		private events: Events,
+		private storage: Storage,
 	) {
-		this.storage = new Storage();
 		this.user_id = localStorage.getItem('user_id');
 
 		this.events.subscribe('user+logout', () => {

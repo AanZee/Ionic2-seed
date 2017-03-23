@@ -16,7 +16,7 @@ export class QrScanner {
 
 	constructor(
 		private zone: NgZone,
-		private platform: Platform
+		private platform: Platform,
 	) {
 		if (!platform.is('cordova')) {
 			console.warn('Scanner is not availlable on non-cordova applications');

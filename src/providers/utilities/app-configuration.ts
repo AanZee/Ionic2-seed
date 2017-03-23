@@ -3,7 +3,7 @@
  ********************************************/
 
 
-import { Camera } from 'ionic-native';
+import { Camera } from '@ionic-native/camera';
 
 export let CONFIGURATION = {
 	Camera: {
