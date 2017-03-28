@@ -3,19 +3,19 @@
  ********************************************/
 
 
-import { Camera } from '@ionic-native/camera';
+import { MockCamera } from '../../mocks/mock-camera';
 
 export let CONFIGURATION = {
 	Camera: {
 		quality: 90,
-		destinationType: Camera.DestinationType.DATA_URL,
-		sourceType: Camera.PictureSourceType.CAMERA,
+		destinationType: MockCamera.DestinationType.DATA_URL,
+		sourceType: MockCamera.PictureSourceType.CAMERA,
 		allowEdit: true,
-		encodingType: Camera.EncodingType.PNG,
+		encodingType: MockCamera.EncodingType.PNG,
 		targetWidth: null,
 		targetHeight: null,
 		saveToPhotoAlbum: false,
-		mediaType: Camera.MediaType.PICTURE,
+		mediaType: MockCamera.MediaType.PICTURE,
 	},
 	Image: {
 		width: 400,

@@ -9,6 +9,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Keyboard } from '@ionic-native/keyboard';
 import { Device } from '@ionic-native/device';
 import { AppVersion } from '@ionic-native/app-version';
+import { Camera } from '@ionic-native/camera';
+import { MockCamera } from '../mocks/mock-camera';
 
 // Translate
 import { TranslateModule, TranslateStaticLoader, TranslateLoader, MissingTranslationHandler, MissingTranslationHandlerParams } from 'ng2-translate';
@@ -88,6 +90,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
 		Keyboard,
 		Device,
 		AppVersion,
+		{ provide: Camera, useClass: MockCamera },
         // API providers
         Oauth,
         AuthToken,

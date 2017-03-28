@@ -44,7 +44,7 @@
 // 						console.error(error)
 // 					});
 // 				} else {
-// 					new this.inAppBrowser(url, '_system', 'location=true');
+// 					this.inAppBrowser.create(url, '_system', 'location=true');
 // 				}
 // 			});
 // 		} else {
