@@ -48,6 +48,10 @@ describe('StorageProvider', () => {
 		expect(storageProvider.getItem).toBeDefined();
 	});
 
+	it('should have deleteItem method', () => {
+		expect(storageProvider.deleteItem).toBeDefined();
+	});
+
 	it('should be able to set a value in storage', (done: any) => {
 		storageProvider.setItem(testKey, testVal).then(() => {
 			done();
