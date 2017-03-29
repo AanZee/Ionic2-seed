@@ -10,63 +10,72 @@ export class MockCamera extends Camera {
 	// 	super();
 	// }
 
-	/**
-     * Constant for possible destination types
-     */
     static DestinationType: {
-        DATA_URL: number;
-        FILE_URI: number;
-        NATIVE_URI: number;
+        DATA_URL: 0;
+        FILE_URI: 1;
+        NATIVE_URI: 2;
     };
-    /**
-     * Convenience constant
-     */
     static EncodingType: {
-        JPEG: number;
-        PNG: number;
+        JPEG: 0;
+        PNG: 1;
     };
-    /**
-     * Convenience constant
-     */
     static MediaType: {
-        PICTURE: number;
-        VIDEO: number;
-        ALLMEDIA: number;
+        PICTURE: 0;
+        VIDEO: 1;
+        ALLMEDIA: 2;
     };
-    /**
-     * Convenience constant
-     */
     static PictureSourceType: {
-        PHOTOLIBRARY: number;
-        CAMERA: number;
-        SAVEDPHOTOALBUM: number;
+        PHOTOLIBRARY: 0;
+        CAMERA: 1;
+        SAVEDPHOTOALBUM: 2;
     };
-    /**
-     * Convenience constant
-     */
     static PopoverArrowDirection: {
-        ARROW_UP: number;
-        ARROW_DOWN: number;
-        ARROW_LEFT: number;
-        ARROW_RIGHT: number;
-        ARROW_ANY: number;
+        ARROW_UP: 1;
+        ARROW_DOWN: 2;
+        ARROW_LEFT: 4;
+        ARROW_RIGHT: 8;
+        ARROW_ANY: 15;
     };
-    /**
-     * Convenience constant
-     */
     static Direction: {
-        BACK: number;
-        FRONT: number;
+        BACK: 0;
+        FRONT: 1;
     };
 
 	public getPicture(options?: CameraOptions): Promise<any> {
+		return new Promise((resolve: any, reject: any) => {
+		navigator.getUserMedia({
+			audio: false,
+			video: true
+		}, (stream: any) => {
+			let video: any = document.createElement('video');
+			document.body.appendChild(video);
+			video.style['position'] = 'absolute';
+			video.style['z-index'] = '999';
+			let canvas: any = document.createElement('canvas');
+			canvas.setAttribute('width', '200px');
+			canvas.setAttribute('height', '200px');
+			document.body.appendChild(canvas);
+			canvas.style['position'] = 'absolute';
+			canvas.style['z-index'] = '999';
+			video.src = window.URL.createObjectURL(stream);
+			video.play();
+			let context = canvas.getContext('2d');
+			setTimeout(() => {
+				context.drawImage(video, 0, 0, canvas.width, canvas.height);
+				var data = canvas.toDataURL('image/jpg');
+				resolve(data);
+				document.body.removeChild(video);
+				document.body.removeChild(canvas);
+			}, 1000);
+		}, (error: any) => {
+			console.log('error', error);
+			reject();
+		});
 		// if (this.platform.is('cordova')) {
 		// 	return super.getPicture(options);
 		// } else {
-			return new Promise((resolve: any, reject: any) => {
-				resolve("BASE_64_ENCODED_DATA_GOES_HERE");
-			});
 		// }
+		});
 	}
 
 	public cleanup(): Promise<any> {
