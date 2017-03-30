@@ -26,7 +26,7 @@ $scroll-shadow-color-light: rgba(255, 255, 255, 0) !default;
 	background-attachment: local, local, scroll, scroll;
 }
 
-[scroll-shadow].forced {
+[scroll-shadow].scroll_shadow--forced {
 	box-shadow: inset  0  6px 6px -6px $scroll-shadow-color,
 				inset  0 -6px 6px -6px $scroll-shadow-color;
 }

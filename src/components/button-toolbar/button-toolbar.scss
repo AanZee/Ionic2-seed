@@ -2,43 +2,45 @@ $button-toolbar-font-default: arial, helvetica !default;
 $button-toolbar-font-bold: arial, helvetica !default;
 $button-toolbar-color-active: orange !default;
 
-.button-toolbar {
-    width: 100%;
-    padding: 0 10px;
-    overflow-x: scroll;
-    overflow-y: hidden;
+button-toolbar {
+	.button-toolbar {
+		width: 100%;
+		padding: 0 10px;
+		overflow-x: scroll;
+		overflow-y: hidden;
+	}
 
-    .quickButtonWrapper {
-        display: inline-block;
-        width: auto;
-        min-width: 100%;
-        height: 100%;
-        white-space: nowrap;
-        text-align: center;
+	.button-toolbar__wrapper {
+		display: inline-block;
+		width: auto;
+		min-width: 100%;
+		height: 100%;
+		white-space: nowrap;
+		text-align: center;
+	}
 
-        button {
-            background: transparent;
-            height: 50px;
-            margin: 0 10px;
-            padding: 0;
-            flex-grow: 0;
-            flex-shrink: 0;
-            border-radius: 0;
-            border-bottom: 3px solid transparent;
-			font-family: $button-toolbar-font-bold;
-			font-weight: bold;
-			font-size: 14px;
-			letter-spacing: -0.2px;
+	.toolbar-button {
+		background: transparent;
+		height: 50px;
+		margin: 0 10px;
+		padding: 0;
+		flex-grow: 0;
+		flex-shrink: 0;
+		border-radius: 0;
+		border-bottom: 3px solid transparent;
+		font-family: $button-toolbar-font-bold;
+		font-weight: bold;
+		font-size: 14px;
+		letter-spacing: -0.2px;
 
-            &.active {
-                border-color: $button-toolbar-color-active;
-            }
+		span {
+			height: 50px;
+			font-family: $button-toolbar-font-default;
+			text-transform: uppercase;
+		}
+	}
 
-            span {
-                height: 50px;
-                font-family: $button-toolbar-font-default;
-                text-transform: uppercase;
-            }
-        }
-    }
+	.toolbar-button--active {
+		border-color: $button-toolbar-color-active;
+	}
 }
