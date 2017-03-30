@@ -34,6 +34,9 @@ export class MockCamera extends Camera {
 						resolve(data);
 						document.body.removeChild(video);
 						document.body.removeChild(canvas);
+						stream.getTracks().forEach((track: any) => {
+							track.stop();
+						});
 					}, 1000);
 				}, (error: any) => {
 					console.log('error', error);
