@@ -1,3 +1,4 @@
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler, APP_INITIALIZER } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
@@ -66,6 +67,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
 		HomePage
 	],
 	imports: [
+		BrowserModule,
 		IonicModule.forRoot(MyApp, {
 			// backButtonText: ''
 		}),
