@@ -10,7 +10,7 @@ export class HttpErrorHandler {
 		private events: Events,
 		private apiGateway: ApiGateway,
 	) {
-		this.apiGateway.errors$.subscribe((value: any) => {
+		this.apiGateway.errorsObservable.subscribe((value: any) => {
 			console.group('HttpErrorHandler');
 			console.log(value.status, 'status code detected.');
 			console.dir(value);

@@ -33,7 +33,7 @@ export class S3Upload {
 	constructor() {
 		this.imageObservable = this.imageSubject.asObservable();
 
-		this.uploader: any = new qq.s3.FineUploaderBasic({
+		this.uploader = new qq.s3.FineUploaderBasic({
 			request: {
 				endpoint: Settings.s3.endpoint,
 				accessKey: Settings.s3.accesskey
@@ -114,7 +114,7 @@ export class S3Upload {
 		let byteArrays: any[] = [];
 
 		for (var offset: number = 0; offset < byteCharacters.length; offset += sliceSize) {
-			let slice: string[] = byteCharacters.slice(offset, offset + sliceSize);
+			let slice: string = byteCharacters.slice(offset, offset + sliceSize);
 
 			let byteNumbers: any[] = new Array(slice.length);
 			for (let i = 0; i < slice.length; i++) {
