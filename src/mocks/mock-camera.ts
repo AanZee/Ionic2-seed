@@ -45,8 +45,4 @@ export class MockCamera extends Camera {
 			});
 		}
 	}
-
-	public cleanup(): Promise<any> {
-		return null;
-	}
 }
