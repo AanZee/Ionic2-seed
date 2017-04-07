@@ -16,25 +16,24 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+
 import { Settings } from './app-settings';
 
 declare var qq: any;
 
 @Injectable()
 export class S3Upload {
-	// s3 fine-uploader object
 	private uploader: any;
 	// bucket prefix for the uploaded file
 	private prefix: string = 'tmp/';
-	// internal subject where uploaded file is stored (after success)
-	private imageSubject = new Subject<any>();
-	// Provide the *public* Observable that clients can subscribe to
-	public image$: Observable<any>;
+	private imageSubject: Subject<any> = new Subject<any>();
+
+	public imageObservable: Observable<any>;
 
 	constructor() {
-		this.image$ = this.imageSubject.asObservable();
+		this.imageObservable = this.imageSubject.asObservable();
 
-		this.uploader = new qq.s3.FineUploaderBasic({
+		this.uploader: any = new qq.s3.FineUploaderBasic({
 			request: {
 				endpoint: Settings.s3.endpoint,
 				accessKey: Settings.s3.accesskey
@@ -48,15 +47,15 @@ export class S3Upload {
 			objectProperties: {
 				acl: 'public-read',
 				key: (fileId: any) => {
-					let filename = this.uploader.getName(fileId);
-					let uuid = this.uploader.getUuid(fileId);
+					let filename: string = this.uploader.getName(fileId);
+					let uuid: string = this.uploader.getUuid(fileId);
 
-					//specially for android filename mess
-					let dotIndx = filename.lastIndexOf('.');
-					let tmpExt = filename.substr(dotIndx + 1);
-					let ext = dotIndx < 0 || tmpExt.length > 4 ? 'jpg' : filename.substr(dotIndx + 1).toLowerCase();
+					// specially for android filename mess
+					let dotIndex: number = filename.lastIndexOf('.');
+					let tempFileExtention: string = filename.substr(dotIndex + 1);
+					let fileExtention: string = dotIndex < 0 || tempFileExtention.length > 4 ? 'jpg' : filename.substr(dotIndex + 1).toLowerCase();
 
-					let newName = this.prefix + uuid + '.' + ext;
+					let newName: string = this.prefix + uuid + '.' + fileExtention;
 					this.uploader.setName(fileId, newName);
 
 					return newName;
@@ -75,76 +74,57 @@ export class S3Upload {
 				sizeLimit: 0 //in bytes
 			},
 			callbacks: {
-				onSubmitted: (id, name) => { this.onSubmitted(id, name) },
-				onComplete: (id, name, responseJSON) => { this.onComplete(id, name, responseJSON) },
-				onAllComplete: () => { this.onAllComplete() }
+				onSubmitted: (id: number, name: string) => { this.onSubmitted(id, name); },
+				onComplete: (id: number, name: string, responseJSON: any) => { this.onComplete(id, name, responseJSON); },
+				onAllComplete: () => { this.onAllComplete(); }
 			}
 		});
-
-		return this;
 	};
 
-
-
-	/******************/
-	/* public methods */
-	/******************/
-
-	addFile(reference) {
-
+	addFile(reference: any): void {
 		if (typeof reference === 'object') {
 			this.uploader.addFiles(reference);
-		}
-		else {
+		} else {
 			this.uploader.addBlobs(this.b64toBlob(reference));
 		}
 	};
 
-	uploadStoredFiles() {
+	uploadStoredFiles(): void {
 		this.uploader.uploadStoredFiles();
 	};
 
-	setPrefix(prefix) {
+	setPrefix(prefix: string): void {
 		this.prefix = prefix;
 	};
 
-	/*****************/
-	/* event methods */
-	/*****************/
+	// Event methods
+	onSubmitted(id: number, name: string): void {};
 
-	onSubmitted(id, name) {};
-
-	onComplete(id, name, responseJSON) {
+	onComplete(id: number, name: string, responseJSON: any): void {
 		this.imageSubject.next(name);
 	};
 
-	onAllComplete() {};
+	onAllComplete(): void {};
 
-	/*******************/
-	/* private methods */
-	/*******************/
-
-	b64toBlob(b64Data, contentType?, sliceSize?) {
+	private b64toBlob(b64Data: string, contentType?: string, sliceSize?: number): Blob {
 		contentType = contentType || '';
 		sliceSize = sliceSize || 512;
 
-		let byteCharacters = atob(b64Data);
-		let byteArrays = [];
+		let byteCharacters: string = atob(b64Data);
+		let byteArrays: any[] = [];
 
-		for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-			let slice = byteCharacters.slice(offset, offset + sliceSize);
+		for (var offset: number = 0; offset < byteCharacters.length; offset += sliceSize) {
+			let slice: string[] = byteCharacters.slice(offset, offset + sliceSize);
 
-			let byteNumbers = new Array(slice.length);
+			let byteNumbers: any[] = new Array(slice.length);
 			for (let i = 0; i < slice.length; i++) {
 				byteNumbers[i] = slice.charCodeAt(i);
 			}
-
-			let byteArray = new Uint8Array(byteNumbers);
-
+			let byteArray: Uint8Array = new Uint8Array(byteNumbers);
 			byteArrays.push(byteArray);
 		}
 
-		let blob = new Blob(byteArrays, { type: contentType });
+		let blob: Blob = new Blob(byteArrays, { type: contentType });
 		return blob;
 	};
 }

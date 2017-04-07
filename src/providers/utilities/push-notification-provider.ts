@@ -39,7 +39,7 @@
 
 import { Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
-import { Observable } from "rxjs/Rx";
+import { Observable } from 'rxjs/Rx';
 
 declare var FCMPlugin;
 

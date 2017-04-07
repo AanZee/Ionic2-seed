@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable } from "rxjs/Rx";
+import { Observable } from 'rxjs/Rx';
 
-import { ApiGateway } from "./utilities/api/api-gateway";
-import { CacheRequest } from "./utilities/cache-request";
+import { ApiGateway } from './utilities/api/api-gateway';
+import { CacheRequest } from './utilities/cache-request';
 import { Settings } from './utilities/app-settings';
 
 @Injectable()

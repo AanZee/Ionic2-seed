@@ -8,7 +8,7 @@
 // import { Injectable } from '@angular/core';
 // import { LocalNotifications } from '@ionic-native/local-notifications';
 // import { Platform } from 'ionic-angular';
-// import { Observable } from "rxjs/Rx";
+// import { Observable } from 'rxjs/Rx';
 //
 // @Injectable()
 // export class LocalNotificationProvider {

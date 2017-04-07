@@ -6,9 +6,9 @@
 
 
 import { Injectable } from '@angular/core';
-import { Observable } from "rxjs/Rx";
+import { Observable } from 'rxjs/Rx';
 
-import { ApiGateway } from "./api/api-gateway";
+import { ApiGateway } from './api/api-gateway';
 import { StorageProvider } from './storage-provider';
 
 @Injectable()

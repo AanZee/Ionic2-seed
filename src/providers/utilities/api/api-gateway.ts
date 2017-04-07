@@ -3,10 +3,9 @@ import { Http, Response, RequestOptions, RequestMethod, URLSearchParams } from '
 import { LoadingController, Loading } from 'ionic-angular';
 import { Observable } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/map';
 
 import { AuthToken } from './auth-token';
-
-import 'rxjs/add/operator/map';
 
 export class ApiGatewayOptions {
 	method: RequestMethod;
@@ -18,12 +17,11 @@ export class ApiGatewayOptions {
 
 @Injectable()
 export class ApiGateway {
-
 	// Define the internal Subject we'll use to push errors
 	private errorsSubject = new Subject<any>();
 
 	// Provide the *public* Observable that clients can subscribe to
-	errors$: Observable<any>;
+	errorsObservable: Observable<any>;
 
 	// Define the internal Subject we'll use to push the command count
 	private pendingCommandsSubject = new Subject<number>();
@@ -33,7 +31,7 @@ export class ApiGateway {
 	private loader: Loading;
 
 	// Provide the *public* Observable that clients can subscribe to
-	pendingCommands$: Observable<number>;
+	pendingCommandsObservable: Observable<number>;
 
 	constructor(
 		private http: Http,
@@ -41,8 +39,8 @@ export class ApiGateway {
 		private authToken: AuthToken,
 	) {
 		// Create our observables from the subjects
-		this.errors$ = this.errorsSubject.asObservable();
-		this.pendingCommands$ = this.pendingCommandsSubject.asObservable();
+		this.errorsObservable = this.errorsSubject.asObservable();
+		this.pendingCommandsObservable = this.pendingCommandsSubject.asObservable();
 	}
 
 	// I perform a GET request to the API, appending the given params
