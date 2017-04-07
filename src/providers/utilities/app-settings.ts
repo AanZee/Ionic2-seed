@@ -3,26 +3,29 @@
  ***************************************************/
 
 
-var BASE_URL = '';
+import { Injectable } from '@angular/core';
 
-export let SETTINGS = {
-	API_ENDPOINT : BASE_URL + '/mobile/index.cfm?act=',
-	IMG_BASE_ENDPOINT   : '',
-	IMG_BASE_PATH   	: '',
-	OAUTH : {
-		CONSUMER : {
-			KEY : '',
-			SECRET : ''
+@Injectable()
+export class Settings {
+	private static readonly baseUrl: string = '';
+
+	public static readonly apiEndpoint: string = Settings.baseUrl + '/mobile/index.cfm?act=';
+	public static readonly imgBaseEndpoint: string = '';
+	public static readonly imgBasePath: string = '';
+	public static readonly oAuth: any = {
+		consumer: {
+			key: '',
+			secret: ''
 		},
-		SIGNATURE_METHOD : 'HMAC-SHA1',
-		VERSION : '1.0'
-	},
-	IMG_ENDPOINT : '',
-	VIDEO_ENDPOINT : '',
-	FILE_ENDPOINT : '',
-	S3 : {
-		ENDPOINT: '',
-		ACCESSKEY: ''
-	},
-	GA_ID: '',
-};
+		signatureMethod: 'HMAC-SHA1',
+		version: '1.0'
+	};
+	public static readonly imgEndpoint: string = '';
+	public static readonly videoEndpoint: string = '';
+	public static readonly fileEndpoint: string = '';
+	public static readonly s3: any = {
+		endpoint: '',
+		accesskey: ''
+	};
+	public static readonly gaId: string = '';
+}

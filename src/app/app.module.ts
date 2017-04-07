@@ -24,6 +24,7 @@ import { AuthToken } from '../providers/utilities/api/auth-token';
 import { HttpErrorHandler } from '../providers/utilities/api/http-error-handler';
 import { ApiGateway } from '../providers/utilities/api/api-gateway';
 // Utility providers
+import { Settings } from '../providers/utilities/app-settings';
 import { StorageProvider } from '../providers/utilities/storage-provider';
 import { CacheRequest } from '../providers/utilities/cache-request';
 // App providers
@@ -38,7 +39,7 @@ import { ComponentScrollShadow } from '../components/scroll-shadow/scroll-shadow
 import { HomePage } from '../pages/home/home';
 
 export function httpErrorHandler(httpErrorHandler: HttpErrorHandler): any {
-	return () => {}
+	return () => {};
 }
 
 export function createTranslateLoader(http: Http): TranslateStaticLoader {
@@ -98,6 +99,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
 		HttpErrorHandler,
 		ApiGateway,
 		// Utility providers
+		Settings,
 		StorageProvider,
 		CacheRequest,
 		// App providers

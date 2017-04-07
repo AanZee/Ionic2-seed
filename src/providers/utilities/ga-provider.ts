@@ -8,7 +8,7 @@
 // import { Injectable } from '@angular/core';
 // import { GoogleAnalytics } from '@ionic-native/google-analytics';
 //
-// import { SETTINGS } from './app-settings';
+// import { Settings } from './app-settings';
 //
 // @Injectable()
 // export class GAProvider {
@@ -21,10 +21,10 @@
 // 	constructor(
 // 		private googleAnalytics: GoogleAnalytics,
 // 	) {
-// 		if (!SETTINGS.GA_ID) {
+// 		if (!Settings.gaId) {
 // 			console.warn('GA_ID not set in settings file');
 // 		} else {
-// 			this.googleAnalytics.startTrackerWithId(SETTINGS.GA_ID).then(() => {
+// 			this.googleAnalytics.startTrackerWithId(Settings.gaId).then(() => {
 // 				console.log('GA ready');
 // 				this.isReady = true;
 // 				while (this.queue.length) {

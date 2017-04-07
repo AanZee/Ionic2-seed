@@ -1,24 +1,28 @@
-import {Injectable} from '@angular/core';
-
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AuthToken {
-  private store: any  = localStorage;
-  private key: String = 'auth-token';
-  
+	private key: string = 'auth-token';
 
-  constructor() {}
+	constructor() {}
 
-  getToken() {
-    return this.store.getItem(this.key);
-  }
-  
-  setToken(token?) {
-    if (token) {
-        this.store.setItem(this.key, token);
-    } else {
-        this.store.removeItem(this.key);
-    }
-  }
-  
+	/**
+	 * Get token for Authorization
+	 * @return string [description]
+	 */
+	public getToken(): string {
+		return localStorage.getItem(this.key);
+	}
+
+	/**
+	 * Set or remove token for Authorization
+	 * @param {string} token [description]
+	 */
+	public setToken(token?: string): void {
+		if (token) {
+			localStorage.setItem(this.key, token);
+		} else {
+			localStorage.removeItem(this.key);
+		}
+	}
 }

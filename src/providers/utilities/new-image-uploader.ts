@@ -10,8 +10,8 @@
 // import { Injectable } from '@angular/core';
 // import { Camera, CameraOptions } from '@ionic-native/camera';
 //
-// import { CONFIGURATION } from './app-configuration';
-// import { SETTINGS } from './app-settings';
+// import { Config } from './app-configuration';
+// import { Settings } from './app-settings';
 // import { S3Upload } from './s3-upload';
 //
 // export class NewImageCamera extends Camera {}
@@ -39,8 +39,8 @@
 // 	public start(options: NewImageCameraOptions, upload_folder: string): Promise<string> {
 // 		return new Promise((resolve: any, reject: any) => {
 // 			this.getImageFromPhone(options).then((image_data: any) => {
-// 				this.uploadImage(image_data, SETTINGS.IMG_BASE_PATH + upload_folder).then((data: any) => {
-// 					resolve(SETTINGS.IMG_BASE_ENDPOINT + data);
+// 				this.uploadImage(image_data, Settings.imgBasePath + upload_folder).then((data: any) => {
+// 					resolve(Settings.imgBaseEndpoint + data);
 // 				}).catch((error: any) => {
 // 					reject({ message: 'Failed to upload image', error: error });
 // 				});
@@ -57,19 +57,19 @@
 // 	 */
 // 	private getImageFromPhone(options: NewImageCameraOptions): Promise<any> {
 // 		let cam_options: any = {
-// 			quality: options.quality || CONFIGURATION.Camera.quality,
-// 			destinationType: options.destinationType || CONFIGURATION.Camera.destinationType,
-// 			sourceType: options.sourceType || CONFIGURATION.Camera.sourceType,
-// 			allowEdit: options.allowEdit || CONFIGURATION.Camera.allowEdit,
-// 			encodingType: options.encodingType || CONFIGURATION.Camera.encodingType,
-// 			saveToPhotoAlbum: options.saveToPhotoAlbum || CONFIGURATION.Camera.saveToPhotoAlbum,
-// 			mediaType: options.mediaType || CONFIGURATION.Camera.mediaType
+// 			quality: options.quality || Config.camera.quality,
+// 			destinationType: options.destinationType || Config.camera.destinationType,
+// 			sourceType: options.sourceType || Config.camera.sourceType,
+// 			allowEdit: options.allowEdit || Config.camera.allowEdit,
+// 			encodingType: options.encodingType || Config.camera.encodingType,
+// 			saveToPhotoAlbum: options.saveToPhotoAlbum || Config.camera.saveToPhotoAlbum,
+// 			mediaType: options.mediaType || Config.camera.mediaType
 // 		};
-// 		if (options.targetWidth || CONFIGURATION.Camera.targetWidth) {
-// 			cam_options.targetWidth = options.targetWidth || CONFIGURATION.Camera.targetWidth;
+// 		if (options.targetWidth || Config.camera.targetWidth) {
+// 			cam_options.targetWidth = options.targetWidth || Config.camera.targetWidth;
 // 		}
-// 		if (options.targetHeight || CONFIGURATION.Camera.targetHeight) {
-// 			cam_options.targetHeight = options.targetHeight || CONFIGURATION.Camera.targetHeight;
+// 		if (options.targetHeight || Config.camera.targetHeight) {
+// 			cam_options.targetHeight = options.targetHeight || Config.camera.targetHeight;
 // 		}
 //
 // 		return this.camera.getPicture(cam_options);

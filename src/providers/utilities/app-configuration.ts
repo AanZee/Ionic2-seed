@@ -3,24 +3,26 @@
  ********************************************/
 
 
+import { Injectable } from '@angular/core';
 import { Camera } from '@ionic-native/camera';
 
-let _camera = new Camera();
+@Injectable()
+export class Config {
+	private static _camera: any = new Camera();
 
-export let CONFIGURATION = {
-	Camera: {
+	public static readonly camera: any = {
 		quality: 90,
-		destinationType: _camera.DestinationType.DATA_URL,
-		sourceType: _camera.PictureSourceType.CAMERA,
+		destinationType: Config._camera.DestinationType.DATA_URL,
+		sourceType: Config._camera.PictureSourceType.CAMERA,
 		allowEdit: true,
-		encodingType: _camera.EncodingType.PNG,
+		encodingType: Config._camera.EncodingType.PNG,
 		targetWidth: null,
 		targetHeight: null,
 		saveToPhotoAlbum: false,
-		mediaType: _camera.MediaType.PICTURE,
-	},
-	Image: {
+		mediaType: Config._camera.MediaType.PICTURE,
+	};
+	public static readonly image: any = {
 		width: 400,
 		height: 400
-	}
+	};
 }
