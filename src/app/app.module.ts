@@ -37,79 +37,80 @@ import { ComponentScrollShadow } from '../components/scroll-shadow/scroll-shadow
 // Pages
 import { HomePage } from '../pages/home/home';
 
-export function httpErrorHandler(httpErrorHandler: HttpErrorHandler) {
-    return () => {}
+export function httpErrorHandler(httpErrorHandler: HttpErrorHandler): any {
+	return () => {}
 }
 
-export function createTranslateLoader(http: Http) {
-    return new TranslateStaticLoader(http, './assets/i18n', '.json');
+export function createTranslateLoader(http: Http): TranslateStaticLoader {
+	return new TranslateStaticLoader(http, './assets/i18n', '.json');
 }
 
 export class MyMissingTranslationHandler implements MissingTranslationHandler {
-    handle(params: MissingTranslationHandlerParams) {
-        console.warn('Missing translation', params);
-        return '...';
-    }
+	handle(params: MissingTranslationHandlerParams): string {
+		console.warn('Missing translation', params);
+		return '...';
+	}
 }
 
 @NgModule({
-    declarations: [
-        MyApp,
+	declarations: [
+		MyApp,
 
-        // Pipes
+		// Pipes
 
-        // Components
+		// Components
 		ComponentScrollShadow,
 
-        // Pages
-        HomePage
-    ],
-    imports: [
-        IonicModule.forRoot(MyApp, {
-            // backButtonText: ''
-        }),
+		// Pages
+		HomePage
+	],
+	imports: [
+		IonicModule.forRoot(MyApp, {
+			// backButtonText: ''
+		}),
 		IonicStorageModule.forRoot(),
-        HttpModule,
-        TranslateModule.forRoot({
-            provide: TranslateLoader,
-            useFactory: (createTranslateLoader),
-            deps: [Http]
-        })
-    ],
-    bootstrap: [IonicApp],
-    entryComponents: [
-        MyApp,
+		HttpModule,
+		TranslateModule.forRoot({
+			provide: TranslateLoader,
+			useFactory: (createTranslateLoader),
+			deps: [Http]
+		})
+	],
+	bootstrap: [IonicApp],
+	entryComponents: [
+		MyApp,
 
-        // Pages
-        HomePage
-    ],
-    providers: [
+		// Pages
+		HomePage
+	],
+	providers: [
 		// Ionic native
 		SplashScreen,
 		StatusBar,
 		Keyboard,
 		Device,
 		AppVersion,
+		// Camera,
 		{ provide: Camera, useClass: MockCamera },
-        // API providers
-        Oauth,
-        AuthToken,
-        HttpErrorHandler,
-        ApiGateway,
-        // Utility providers
-        StorageProvider,
-        CacheRequest,
-        // App providers
-        // ExampleProvider,
+		// API providers
+		Oauth,
+		AuthToken,
+		HttpErrorHandler,
+		ApiGateway,
+		// Utility providers
+		StorageProvider,
+		CacheRequest,
+		// App providers
+		// ExampleProvider,
 
-        { provide: ErrorHandler, useClass: IonicErrorHandler },
-        { provide: MissingTranslationHandler, useClass: MyMissingTranslationHandler },
-        {
-            provide: APP_INITIALIZER,
-            useFactory: httpErrorHandler, //this must be 'static' therefore definition below
-            deps: [HttpErrorHandler],
-            multi: true
-        }
-    ]
+		{ provide: ErrorHandler, useClass: IonicErrorHandler },
+		{ provide: MissingTranslationHandler, useClass: MyMissingTranslationHandler },
+		{
+			provide: APP_INITIALIZER,
+			useFactory: httpErrorHandler, //this must be 'static' therefore definition below
+			deps: [HttpErrorHandler],
+			multi: true
+		}
+	]
 })
-export class AppModule { }
+export class AppModule {}
