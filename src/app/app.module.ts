@@ -90,6 +90,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
 		Keyboard,
 		Device,
 		AppVersion,
+		// Camera,
 		{ provide: Camera, useClass: MockCamera },
 		// API providers
 		Oauth,
