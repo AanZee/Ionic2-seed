@@ -13,10 +13,10 @@
  **********************************************************************************************************/
 
 
-import {Injectable} from '@angular/core';
-import {Observable} from "rxjs/Observable";
-import {Subject} from "rxjs/Subject";
-import {SETTINGS} from './app-settings';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+import { SETTINGS } from './app-settings';
 
 declare var qq: any;
 
@@ -40,10 +40,10 @@ export class S3Upload {
 				accessKey: SETTINGS.S3.ACCESSKEY
 			},
 			signature: {
-				endpoint: SETTINGS.API_ENDPOINT + "s3upload.signature"
+				endpoint: SETTINGS.API_ENDPOINT + 's3upload.signature'
 			},
 			uploadSuccess: {
-				endpoint: SETTINGS.API_ENDPOINT + "s3upload.success"
+				endpoint: SETTINGS.API_ENDPOINT + 's3upload.success'
 			},
 			objectProperties: {
 				acl: 'public-read',
@@ -63,7 +63,7 @@ export class S3Upload {
 				}
 			},
 			iframeSupport: {
-				localBlankPagePath: SETTINGS.API_ENDPOINT + "s3upload.blank"
+				localBlankPagePath: SETTINGS.API_ENDPOINT + 's3upload.blank'
 			},
 			// optional feature
 			chunking: {

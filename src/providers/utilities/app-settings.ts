@@ -3,7 +3,7 @@
  ***************************************************/
 
 
-var BASE_URL = "";
+var BASE_URL = '';
 
 export let SETTINGS = {
 	API_ENDPOINT : BASE_URL + '/mobile/index.cfm?act=',
