@@ -1,22 +1,23 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { TranslateService } from 'ng2-translate';
 
+@IonicPage()
 @Component({
-    selector: 'page-home',
-    templateUrl: 'home.html'
+	selector: 'page-home',
+	templateUrl: 'home.html'
 })
-export class HomePage {
+export class Home {
 
-    constructor(
-        public navCtrl: NavController,
-        public translate: TranslateService
-    ) {
-    }
+	constructor(
+		public navCtrl: NavController,
+		public translate: TranslateService,
+	) {
+	}
 
-    ionViewWillEnter(): void {
-        this.translate.get('HOME.title').subscribe((translation: string) => {
-            console.log(translation);
-        });
-    }
+	ionViewWillEnter(): void {
+		this.translate.get('HOME.title').subscribe((translation: string) => {
+			console.log(translation);
+		});
+	}
 }
