@@ -10,12 +10,12 @@ export class OrderArrayBy {
 		list.sort((a: any, b: any) => {
 			let valA: any = a;
 			let valB: any = b;
-			for (let iterator: number = 0; iterator < orderKey.length; iterator++) {
+			for (let iterator: number = 0; iterator < orderKeys.length; iterator++) {
 				if (valA && valB && (valA.hasOwnProperty(orderKeys[iterator]) || valB.hasOwnProperty(orderKeys[iterator]))) {
-					valA = valA[orderKey[iterator]];
-					valB = valB[orderKey[iterator]];
+					valA = valA[orderKeys[iterator]];
+					valB = valB[orderKeys[iterator]];
 				} else {
-					console.warn('Sort pipe: orderKey' + orderKey[iterator] + 'does not exist on either object. comparing on higher level.');
+					console.warn('Sort pipe: orderKey' + orderKeys[iterator] + 'does not exist on either object. comparing on higher level.');
 					break;
 				}
 			}
