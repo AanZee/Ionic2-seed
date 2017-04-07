@@ -3,37 +3,26 @@ ion-header[logo-header] {
 	    z-index: 99;
 	}
 
-	ion-navbar.toolbar {
+	.navigation_bar {
 		position: relative;
 		min-height: 50px;
 		overflow: visible;
 		contain: none;
 
-		.toolbar__buttons {
-			button.bar-button {
-				min-width: 32px;
-			}
+		.navigation_bar__button {
+			min-width: 32px;
 		}
 
 		.toolbar-title {
 			padding-top: 10px;
 
-			.toolbar__logo {
+			.navigation_bar__logo {
 				position: relative;
 				z-index: 1;
 				margin-top: 10px;
 				height: 52px !important;
 			}
 		}
-
-		// ion-buttons {
-		//     button {
-		//         margin: 0 6px;
-		//         padding: 0 5px 0 17px;
-		//
-		//         color: $color-white;
-		//     }
-		// }
 	}
 
 	ion-toolbar {

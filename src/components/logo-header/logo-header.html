@@ -1,11 +1,11 @@
-<ion-navbar color="primary" no-border>
-	<ion-buttons class="toolbar__buttons" *ngIf="modalView">
-		<button ion-button icon-only (click)="closeModal()">
+<ion-navbar class="navigation_bar" color="primary" no-border>
+	<ion-buttons *ngIf="modalView">
+		<button class="navigation_bar__button" ion-button icon-only (click)="closeModal()">
 			<ion-icon name="close"></ion-icon>
 		</button>
 	</ion-buttons>
 	<ion-title>
-		<img class="toolbar__logo" src="assets/img/logo.png" />
+		<img class="navigation_bar__logo" src="assets/img/logo.png" />
 	</ion-title>
 </ion-navbar>
 

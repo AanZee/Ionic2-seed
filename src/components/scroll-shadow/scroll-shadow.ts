@@ -17,9 +17,9 @@ export class ComponentScrollShadow {
 		if (this.platform.is('ios')) {
 			elem.nativeElement.addEventListener('scroll', () => {
 				if (elem.nativeElement.scrollTop > 0) {
-					elem.nativeElement.classList.add('forced');
+					elem.nativeElement.classList.add('scroll_shadow--forced');
 				} else {
-					elem.nativeElement.classList.remove('forced');
+					elem.nativeElement.classList.remove('scroll_shadow--forced');
 				}
 			});
 		}
