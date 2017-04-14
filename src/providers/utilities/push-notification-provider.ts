@@ -50,6 +50,8 @@ export class PushNotificationProvider {
 	private notificationObservable: Observable<any>;
 	private observer: any;
 
+	public defaultTopic: string = 'messages';
+
 	constructor(
 		private platform: Platform,
 	) {
