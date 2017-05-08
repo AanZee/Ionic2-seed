@@ -4,7 +4,7 @@
  **********************************************/
 
 
-import { Injectable, Pipe } from '@angular/core';
+import { Pipe, Injectable } from '@angular/core';
 import { default as moment } from 'moment';
 
 @Pipe({

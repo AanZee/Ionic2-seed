@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Events } from 'ionic-angular';
 
 import { ApiGateway } from './api-gateway';
 
@@ -7,7 +6,6 @@ import { ApiGateway } from './api-gateway';
 export class HttpErrorHandler {
 
 	constructor(
-		private events: Events,
 		private apiGateway: ApiGateway,
 	) {
 		this.apiGateway.errorsObservable.subscribe((value: any) => {

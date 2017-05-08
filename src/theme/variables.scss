@@ -12,13 +12,8 @@ $font-path: "../assets/fonts";
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
-
-@function transparent-black($alpha) {
-    @return rgba(0, 0, 0, $alpha);
-}
-
-@function transparent-white($alpha) {
-    @return rgba(255, 255, 255, $alpha);
+@function color-opacity($color, $opacity: 0.3) {
+	@return rgba($color, $opacity);
 }
 
 $color-primary:               #008144;
@@ -26,7 +21,6 @@ $color-secondary:             #013300;
 $color-text:                  #000;
 $color-border:                #9a9a9a;
 $color-background:            #fff;
-$color-danger:                #ff0000;
 
 $font-primary:                arial, helvetica;
 
@@ -40,11 +34,10 @@ $font-primary:                arial, helvetica;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-    primary:    $color-primary,
-    secondary:  $color-secondary,
-    danger:     $color-danger,
-    light:      $color-background,
-    dark:       $color-text
+	primary:    $color-primary,
+	secondary:  $color-secondary,
+	light:      $color-background,
+	dark:       $color-text
 );
 
 

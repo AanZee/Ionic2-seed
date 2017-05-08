@@ -4,7 +4,7 @@ import { Pipe, Injectable } from '@angular/core';
 	name: 'filterArrayBy'
 })
 @Injectable()
-export class FilterArrayBy {
+export class PipeFilterArrayBy {
 
 	transform(list: any[], filterKeys: string[], filterValue: any): any {
 		return list.filter((item: any) => {

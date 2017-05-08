@@ -15,26 +15,10 @@ import { MockCamera } from '../mocks/mock-camera';
 // Translate
 import { TranslateModule, MissingTranslationHandler, MissingTranslationHandlerParams } from 'ng2-translate';
 
-// API providers
-import { Oauth } from '../providers/utilities/api/oauth';
-import { AuthToken } from '../providers/utilities/api/auth-token';
-import { HttpErrorHandler } from '../providers/utilities/api/http-error-handler';
-import { ApiGateway } from '../providers/utilities/api/api-gateway';
-// Utility providers
-import { Settings } from '../providers/utilities/app-settings';
-import { Config } from '../providers/utilities/app-configuration';
-import { Utilities } from '../providers/utilities/app-utilities';
-import { StorageProvider } from '../providers/utilities/storage-provider';
-import { CacheRequest } from '../providers/utilities/cache-request';
-
-// Pipes
-
-// Components
-import { ComponentScrollShadow } from '../components/scroll-shadow/scroll-shadow';
-
-export function httpErrorHandler(httpErrorHandler: HttpErrorHandler): any {
-	return () => {};
-}
+// Modules
+import { ProvidersModule } from '../providers/providers.module';
+import { PipesModule } from '../pipes/pipes.module';
+import { ComponentsModule } from '../components/components.module';
 
 export class MyMissingTranslationHandler implements MissingTranslationHandler {
 	handle(params: MissingTranslationHandlerParams): string {
@@ -44,12 +28,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
 }
 
 @NgModule({
-	declarations: [
-		// Pipes
-
-		// Components
-		ComponentScrollShadow,
-	],
+	declarations: [],
 	providers: [
 		// Ionic native
 		SplashScreen,
@@ -59,31 +38,23 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
 		AppVersion,
 		// Camera,
 		{ provide: Camera, useClass: MockCamera },
-		// API providers
-		Oauth,
-		AuthToken,
-		HttpErrorHandler,
-		ApiGateway,
-		// Utility providers
-		Settings,
-		Config,
-		Utilities,
-		StorageProvider,
-		CacheRequest,
+
 		{ provide: ErrorHandler, useClass: IonicErrorHandler },
-		{
-			provide: APP_INITIALIZER,
-			useFactory: httpErrorHandler, //this must be 'static' therefore definition below
-			deps: [HttpErrorHandler],
-			multi: true
-		},
 		{ provide: MissingTranslationHandler, useClass: MyMissingTranslationHandler },
 	],
 	imports: [
+		PipesModule,
+		ComponentsModule,
+		ProvidersModule,
+
 		HttpModule,
 		IonicStorageModule.forRoot(),
 	],
 	exports: [
+		ProvidersModule,
+		PipesModule,
+		ComponentsModule,
+
 		TranslateModule,
 	]
 })
