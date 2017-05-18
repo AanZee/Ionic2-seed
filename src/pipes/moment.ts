@@ -13,7 +13,7 @@ import { default as moment } from 'moment';
 @Injectable()
 export class PipeMoment {
 
-	transform(value: moment.Moment, args?: any) {
+	transform(value: moment.Moment, args?: any): string {
 		return moment().format(args || 'D MMMM YYYY');
 	}
 }

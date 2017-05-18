@@ -19,12 +19,13 @@
 // 	 * Initiate tracker. Work queue when ready
 // 	 */
 // 	constructor(
+// 		private settings: Settings,
 // 		private googleAnalytics: GoogleAnalytics,
 // 	) {
-// 		if (!Settings.gaId) {
+// 		if (!this.settings.gaId) {
 // 			console.warn('GA_ID not set in settings file');
 // 		} else {
-// 			this.googleAnalytics.startTrackerWithId(Settings.gaId).then(() => {
+// 			this.googleAnalytics.startTrackerWithId(this.settings.gaId).then(() => {
 // 				console.log('GA ready');
 // 				this.isReady = true;
 // 				while (this.queue.length) {

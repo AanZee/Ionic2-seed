@@ -9,14 +9,14 @@ export class ComponentSelectSwitch {
 
 	@Input() options: string[] = [];
 	@Input()
-	get selected() {
+	get selected(): number {
 		return this.selectedOption;
 	}
-	set selected(val) {
+	set selected(val: number) {
 		this.selectedOption = val;
 		this.selectedChange.emit(this.selectedOption);
 	}
-	@Output() selectedChange = new EventEmitter();
+	@Output() selectedChange: EventEmitter<any> = new EventEmitter<any>();
 
 	constructor() {
 		if (this.selectedOption < 0) { this.select(0); }

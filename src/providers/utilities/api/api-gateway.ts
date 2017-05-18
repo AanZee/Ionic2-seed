@@ -11,23 +11,23 @@ export class ApiGatewayOptions {
 	method: RequestMethod;
 	url: string;
 	headers: any;
-	params = {};
-	data = {};
+	params: any = {};
+	data: any = {};
 }
 
 @Injectable()
 export class ApiGateway {
 	// Define the internal Subject we'll use to push errors
-	private errorsSubject = new Subject<any>();
+	private errorsSubject: Subject<any> = new Subject<any>();
 
 	// Provide the *public* Observable that clients can subscribe to
 	errorsObservable: Observable<any>;
 
 	// Define the internal Subject we'll use to push the command count
-	private pendingCommandsSubject = new Subject<number>();
-	private pendingCommandCount = 0;
+	private pendingCommandsSubject: Subject<number> = new Subject<number>();
+	private pendingCommandCount: number = 0;
 
-	private pendingRequestsCount = 0;
+	private pendingRequestsCount: number = 0;
 	private loader: Loading;
 
 	// Provide the *public* Observable that clients can subscribe to
@@ -46,7 +46,7 @@ export class ApiGateway {
 	// I perform a GET request to the API, appending the given params
 	// as URL search parameters. Returns a stream.
 	get(url: string, params: any, hideLoader?: boolean): Observable<any> {
-		let options = new ApiGatewayOptions();
+		let options: ApiGatewayOptions = new ApiGatewayOptions();
 		options.method = RequestMethod.Get;
 		options.url = url;
 		options.params = params;
@@ -65,7 +65,7 @@ export class ApiGateway {
 			data = params;
 			params = {};
 		}
-		let options = new ApiGatewayOptions();
+		let options: ApiGatewayOptions = new ApiGatewayOptions();
 		options.method = RequestMethod.Post;
 		options.url = url;
 		options.params = params;
@@ -85,7 +85,7 @@ export class ApiGateway {
 			data = params;
 			params = {};
 		}
-		let options = new ApiGatewayOptions();
+		let options: ApiGatewayOptions = new ApiGatewayOptions();
 		options.method = RequestMethod.Put;
 		options.url = url;
 		options.params = params;
@@ -104,7 +104,7 @@ export class ApiGateway {
 			data = params;
 			params = {};
 		}
-		let options = new ApiGatewayOptions();
+		let options: ApiGatewayOptions = new ApiGatewayOptions();
 		options.method = RequestMethod.Delete;
 		options.url = url;
 		options.params = params;
@@ -116,7 +116,7 @@ export class ApiGateway {
 
 	private request(options: ApiGatewayOptions, hideLoader?: boolean): Observable<any> {
 		options.method = (options.method || RequestMethod.Get);
-		options.url = (options.url || "");
+		options.url = (options.url || '');
 		options.headers = (options.headers || {});
 		options.params = (options.params || {});
 		options.data = (options.data || {});
@@ -125,19 +125,19 @@ export class ApiGateway {
 		//this.addXsrfToken(options);
 		this.addContentType(options);
 
-		let requestOptions = new RequestOptions();
+		let requestOptions: RequestOptions = new RequestOptions();
 		requestOptions.method = options.method;
 		requestOptions.url = options.url;
 		requestOptions.headers = options.headers;
 		requestOptions.search = this.buildUrlSearchParams(options.params);
 		requestOptions.body = JSON.stringify(options.data);
 
-		let token = this.authToken.getToken();
+		let token: string = this.authToken.getToken();
 		if (token) {
 			requestOptions.headers['Authorization'] = 'Bearer ' + token;
 		}
 
-		let isCommand = (options.method !== RequestMethod.Get);
+		let isCommand: boolean = (options.method !== RequestMethod.Get);
 
 		if (isCommand) {
 			this.pendingCommandsSubject.next(++this.pendingCommandCount);
@@ -155,7 +155,7 @@ export class ApiGateway {
 		}
 		this.pendingRequestsCount++;
 
-		let stream = this.http.request(options.url, requestOptions)
+		let stream: Observable<any> = this.http.request(options.url, requestOptions)
 		.catch((error: any) => {
 			this.errorsSubject.next(error);
 			return Observable.throw(this.unwrapHttpError(error));
@@ -183,20 +183,20 @@ export class ApiGateway {
 
 	private addContentType(options: ApiGatewayOptions): ApiGatewayOptions {
 		if (options.method !== RequestMethod.Get) {
-			options.headers["Content-Type"] = "application/json; charset=UTF-8";
+			options.headers['Content-Type'] = 'application/json; charset=UTF-8';
 		}
 		return options;
 	}
 
 	private extractValue(collection: any, key: string): any {
-		var value = collection[key];
+		let value: any = collection[key];
 		delete (collection[key]);
 		return value;
 	}
 
 	/*
 	private addXsrfToken(options: ApiGatewayOptions): ApiGatewayOptions {
-		var xsrfToken = this.getXsrfCookie();
+		let xsrfToken = this.getXsrfCookie();
 		if (xsrfToken) {
 			options.headers["X-XSRF-TOKEN"] = xsrfToken;
 		}
@@ -206,7 +206,7 @@ export class ApiGateway {
 
 	/*
 	private getXsrfCookie(): string {
-		var matches = document.cookie.match(/\bXSRF-TOKEN=([^\s;]+)/);
+		let matches = document.cookie.match(/\bXSRF-TOKEN=([^\s;]+)/);
 		try {
 			return (matches && decodeURIComponent(matches[1]));
 		} catch (decodeError) {
@@ -216,9 +216,9 @@ export class ApiGateway {
 	*/
 
 	private buildUrlSearchParams(params: any): URLSearchParams {
-		var searchParams = new URLSearchParams();
-		for (var key in params) {
-			searchParams.append(key, params[key])
+		let searchParams: URLSearchParams = new URLSearchParams();
+		for (let key in params) {
+			searchParams.append(key, params[key]);
 		}
 		return searchParams;
 	}
@@ -226,7 +226,7 @@ export class ApiGateway {
 	private interpolateUrl(options: ApiGatewayOptions): ApiGatewayOptions {
 		options.url = options.url.replace(
 			/:([a-zA-Z]+[\w-]*)/g,
-			($0, token) => {
+			($0: string, token: string) => {
 				// Try to move matching token from the params collection.
 				if (options.params.hasOwnProperty(token)) {
 					return (this.extractValue(options.params, token));
@@ -237,20 +237,20 @@ export class ApiGateway {
 				}
 				// If a matching value couldn't be found, just replace
 				// the token with the empty string.
-				return ("");
+				return ('');
 			}
 		);
 		// Clean up any repeating slashes.
 		//options.url = options.url.replace(/\/{2,}/g, "/");
 		// Clean up any trailing slashes.
-		options.url = options.url.replace(/\/+$/g, "");
+		options.url = options.url.replace(/\/+$/g, '');
 
 		return options;
 	}
 
 	private unwrapHttpError(error: any): any {
 		try {
-			let original = {};
+			let original: any = {};
 			if (error._body) {
 				original = JSON.parse(error._body);
 			}
@@ -263,7 +263,7 @@ export class ApiGateway {
 		} catch (jsonError) {
 			return ({
 				code: -1,
-				message: "An unexpected error occurred."
+				message: 'An unexpected error occurred.'
 			});
 		}
 	}

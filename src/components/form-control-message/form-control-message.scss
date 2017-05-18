@@ -1,0 +1,29 @@
+$form-error-color-background: $color-nope !default;
+$form-error-color-text: $color-background !default;
+
+form-error-message {
+	div {
+		display: inline-block;
+		position: relative;
+		margin-top: 10px;
+		padding: 5px 10px;
+		border-radius: 3px;
+		background: $form-error-color-background;
+		color: $form-error-color-text;
+	}
+
+	div:after {
+		bottom: 100%;
+		left: 20px;
+		border: solid transparent;
+		content: "";
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+		border-color: color-opacity($form-error-color-background, 0);
+		border-bottom-color: $form-error-color-background;
+		border-width: 10px;
+		margin-left: -10px;
+	}
+}

@@ -32,7 +32,7 @@ export class CacheRequest {
 	* @return {Promise<any>}            [description]
 	*/
 	public fetch(endpoint: string, method: string, fresh?: boolean, hideLoader?: boolean, ttl?: number): Promise<any> {
-		let key = method.split('&')[0];
+		let key: string = method.split('&')[0];
 		return new Promise((resolve: any, reject: any) => {
 			if (fresh) {
 				this.serverRequest(endpoint, method, hideLoader).subscribe((data: any) => {

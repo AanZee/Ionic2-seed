@@ -1,4 +1,4 @@
-import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 // API providers
 import { Oauth } from '../providers/utilities/api/oauth';
@@ -13,7 +13,7 @@ import { StorageProvider } from '../providers/utilities/storage-provider';
 import { CacheRequest } from '../providers/utilities/cache-request';
 
 export function httpErrorHandler(httpErrorHandler: HttpErrorHandler): any {
-	return () => {};
+	return (): any => {};
 }
 
 @NgModule({

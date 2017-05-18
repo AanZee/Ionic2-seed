@@ -11,15 +11,15 @@ export class ComponentButtonToolbar {
 
 	@Input() toolbarButtons: string[] = [];
 	@Input()
-	get selected() {
+	get selected(): number {
 		return this.selectedOption;
 	}
-	set selected(val) {
+	set selected(val: number) {
 		this.selectedOption = val;
 		this.slideToolbar();
 		this.selectedChange.emit(this.selectedOption);
 	}
-	@Output() selectedChange = new EventEmitter();
+	@Output() selectedChange: EventEmitter<any> = new EventEmitter<any>();
 
 	private ready: boolean = false;
 
@@ -39,7 +39,7 @@ export class ComponentButtonToolbar {
 	}
 
 	private slideInterval: any = null;
-	private slideToolbar() {
+	private slideToolbar(): void {
 		//If new item not fully in screen, scroll so it is as centered as possible
 		if (this.ready) {
 			//Clear previous animation
@@ -48,21 +48,21 @@ export class ComponentButtonToolbar {
 				this.slideInterval = null;
 			}
 			//Get values
-			let pager = this.button_toolbar.nativeElement;
-			let buttons = pager.children[0].getElementsByTagName('button');
-			let curr_button = buttons[this.selectedOption];
+			let pager: any = this.button_toolbar.nativeElement;
+			let buttons: any[] = pager.children[0].getElementsByTagName('button');
+			let curr_button: any = buttons[this.selectedOption];
 			if (curr_button) {
-				let wrapper_bb = pager.getBoundingClientRect();
-				let button_bb = curr_button.getBoundingClientRect();
+				let wrapper_bb: any = pager.getBoundingClientRect();
+				let button_bb: any = curr_button.getBoundingClientRect();
 
 				//Animation variables
-				let movement_speed = 300;
-				let refresh_time = 10;
-				let iteration = 0;
-				let diff = button_bb.left - ((wrapper_bb.width / 2) - (button_bb.width / 2));
+				let movement_speed: number = 300;
+				let refresh_time: number = 10;
+				let iteration: number = 0;
+				let diff: number = button_bb.left - ((wrapper_bb.width / 2) - (button_bb.width / 2));
 
 				//Check if diff is out of scroll range and adjust accordingly
-				let curr_scroll = pager.scrollLeft;
+				let curr_scroll: number = pager.scrollLeft;
 				if (diff > 0 && diff > (pager.scrollWidth - pager.clientWidth) - curr_scroll) {
 					diff = (pager.scrollWidth - pager.clientWidth) - curr_scroll;
 				} else if (diff < 0 && diff < -curr_scroll) {

@@ -6,7 +6,7 @@ import { Pipe, Injectable } from '@angular/core';
 @Injectable()
 export class PipeObjectToArray {
 
-	transform(value: any, args?: any[]) {
+	transform(value: any, args?: any[]): any[] {
 		let array: any[] = [];
 		if (value instanceof Object) {
 			for (let key in value) {

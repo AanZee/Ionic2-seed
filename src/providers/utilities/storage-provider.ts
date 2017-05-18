@@ -43,16 +43,16 @@ export class StorageProvider {
 			this.user_id = localStorage.getItem('user_id');
 		}
 
-		return new Promise((resolve, reject) => {
-			this.storage.get(name + '_' + this.user_id).then(cachedResult => {
+		return new Promise((resolve: any, reject: any) => {
+			this.storage.get(name + '_' + this.user_id).then((cachedResult: string) => {
 				if (cachedResult) {
-					let data = JSON.parse(cachedResult);
+					let data: any = JSON.parse(cachedResult);
 					resolve(data.data);
 				} else {
 					resolve(undefined);
 				}
 
-			}).catch(err => reject(err));
+			}).catch((err: any) => reject(err));
 		});
 	}
 
@@ -67,7 +67,7 @@ export class StorageProvider {
 			this.user_id = localStorage.getItem('user_id');
 		}
 
-		let value = JSON.stringify({ data: data });
+		let value: string = JSON.stringify({ data: data });
 		return this.storage.set(name + '_' + this.user_id, value);
 	}
 

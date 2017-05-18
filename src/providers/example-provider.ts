@@ -9,29 +9,30 @@ import { Settings } from './utilities/app-settings';
 export class ExampleProvider {
 
 	constructor(
+		public settings: Settings,
 		public apiGateway: ApiGateway,
 		public cacheRequest: CacheRequest,
 	) {}
 
 	// Direct API calls
 	public getData(hideLoader?: boolean): Observable<any> {
-		let method = 'data.get';
+		let method: string = 'data.get';
 		return this.apiGateway.get(
-			Settings.apiEndpoint + method, {}, !!hideLoader
+			this.settings.apiEndpoint + method, {}, !!hideLoader
 		);
 	}
 	public postData(post_data: any, hideLoader?: boolean): Observable<any> {
-		let method = 'data.post';
+		let method: string = 'data.post';
 		return this.apiGateway.post(
-			Settings.apiEndpoint + method, {}, post_data, !!hideLoader
+			this.settings.apiEndpoint + method, {}, post_data, !!hideLoader
 		);
 	}
 
 	// Cache API calls
 	public fetch(): Promise<any> {
-		return new Promise((resolve: any, reject: any) => {
-			let method = 'data.get';
-			this.cacheRequest.fetch(Settings.apiEndpoint, method, false).then((data: any) => {
+		return new Promise((resolve: any, reject: any): any => {
+			let method: string = 'data.get';
+			this.cacheRequest.fetch(this.settings.apiEndpoint, method, false).then((data: any) => {
 				if (data) {
 					resolve(data);
 				} else {

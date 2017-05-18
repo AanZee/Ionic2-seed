@@ -4,7 +4,7 @@ import { Pipe, Injectable } from '@angular/core';
 	name: 'orderArrayBy'
 })
 @Injectable()
-export class PipeOrderArrayBy {
+export class PipeArrayOrderBy {
 
 	transform(list: any[], orderKeys: string[], orderDesc?: boolean): any {
 		list.sort((a: any, b: any) => {

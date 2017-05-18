@@ -4,7 +4,7 @@ import { Pipe, Injectable } from '@angular/core';
 	name: 'filterArrayBy'
 })
 @Injectable()
-export class PipeFilterArrayBy {
+export class PipeArrayFilterBy {
 
 	transform(list: any[], filterKeys: string[], filterValue: any): any {
 		return list.filter((item: any) => {
@@ -15,7 +15,7 @@ export class PipeFilterArrayBy {
 				}
 				comparator = item[filterKeys[iterator]];
 			}
-			return comparator == filterValue;
+			return comparator === filterValue;
 		});
 	}
 }

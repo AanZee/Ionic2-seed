@@ -6,16 +6,18 @@ import { Settings } from '../app-settings';
 @Injectable()
 export class Oauth {
 
-	constructor() {}
+	constructor(
+		private settings: Settings,
+	) {}
 
-	parseUrl(url: string) {
+	parseUrl(url: string): any {
 		let urlParts: string[] = url.split('?');
 		let baseUrl: string = urlParts[0];
 		let params: any = {};
 
 		if (urlParts.length > 1) {
 			let pairs: string[] = urlParts[1].split('&');
-			for (let i = 0; i < pairs.length; i++) {
+			for (let i: number = 0; i < pairs.length; i++) {
 				let pair: string[] = pairs[i].split('=');
 				params[pair[0]] = pair[1] ? pair[1] : '';
 			}
@@ -39,7 +41,7 @@ export class Oauth {
 		baseString += '&' + this.Rfc3986(url);
 		baseString += '&' + this.Rfc3986(this.normalize(params));
 
-		let signingKey: string = Settings.oAuth.consumer.secret + '&';    //no need for TOKEN_SECRET
+		let signingKey: string = this.settings.oAuth.consumer.secret + '&';    //no need for TOKEN_SECRET
 
 		return CryptoJS.enc.Base64.stringify(CryptoJS.HmacSHA1(baseString, signingKey));
 	}
@@ -56,8 +58,8 @@ export class Oauth {
 		}
 
 		//concatenate
-		let normalizedParameters = [];
-		for (let i = 0; i < sortedKeys.length; i++) {
+		let normalizedParameters: string[] = [];
+		for (let i: number = 0; i < sortedKeys.length; i++) {
 			let key: string = decodeURIComponent(sortedKeys[i]);
 			normalizedParameters.push( key + '=' + params[key] );
 		}
@@ -78,12 +80,12 @@ export class Oauth {
 
 	addOauthParameters(): Object {
 		let params: any = {};
-		params['oauth_consumer_key'] = Settings.oAuth.consumer.key;
+		params['oauth_consumer_key'] = this.settings.oAuth.consumer.key;
 		params['oauth_token'] = '';
 		params['oauth_nonce'] = this.createNonce(32);
-		params['oauth_signature_method'] = Settings.oAuth.signatureMethod;
+		params['oauth_signature_method'] = this.settings.oAuth.signatureMethod;
 		params['oauth_timestamp'] = Math.round((new Date()).getTime() / 1000);
-		params['oauth_version'] = Settings.oAuth.version;
+		params['oauth_version'] = this.settings.oAuth.version;
 		return params;
 	}
 

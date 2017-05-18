@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler, APP_INITIALIZER } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicErrorHandler } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
@@ -9,8 +9,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Keyboard } from '@ionic-native/keyboard';
 import { Device } from '@ionic-native/device';
 import { AppVersion } from '@ionic-native/app-version';
-import { Camera } from '@ionic-native/camera';
-import { MockCamera } from '../mocks/mock-camera';
 
 // Translate
 import { TranslateModule, MissingTranslationHandler, MissingTranslationHandlerParams } from 'ng2-translate';
@@ -36,8 +34,6 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
 		Keyboard,
 		Device,
 		AppVersion,
-		// Camera,
-		{ provide: Camera, useClass: MockCamera },
 
 		{ provide: ErrorHandler, useClass: IonicErrorHandler },
 		{ provide: MissingTranslationHandler, useClass: MyMissingTranslationHandler },

@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 
-import { PipeFilterArrayBy } from './filter-array-by';
 import { PipeMoment } from './moment';
 import { PipeObjectToArray } from './object-to-array';
-import { PipeOrderArrayBy } from './order-array-by';
+import { PipeArrayFilterBy } from './array-filter-by';
+import { PipeArrayOrderBy } from './array-order-by';
 
 @NgModule({
 	declarations: [
-		PipeFilterArrayBy,
 		PipeMoment,
 		PipeObjectToArray,
-		PipeOrderArrayBy,
+		PipeArrayFilterBy,
+		PipeArrayOrderBy,
 	],
 	exports: [
-		PipeFilterArrayBy,
 		PipeMoment,
 		PipeObjectToArray,
-		PipeOrderArrayBy,
+		PipeArrayFilterBy,
+		PipeArrayOrderBy,
 	]
 })
 export class PipesModule {}
