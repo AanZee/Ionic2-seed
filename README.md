@@ -4,11 +4,7 @@ This project is a custom seed for Ionic 2 applications.
 
 ## How to use this seed
 
-This project can be, but should not be used on it's own. It is designed to be used to start a new Ionic 2 project with the following command.
-
-```bash
-$ ionic start <project-name> --v2 https://github.com/AanZee/Ionic2-seed
-```
+Clone this repo. remove `.git` folder and init your new repo.
 
 You may encounter errors like "`Current working directory is not a Cordova-based project`".
 This is caused by the `www` folder that is missing initially and is easily resolved by running the following commands.
