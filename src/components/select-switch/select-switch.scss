@@ -2,13 +2,13 @@ $select-switch-font-size: 14px !default;
 $select-switch-color-border: gray !default;
 $select-switch-color-active: orange !default;
 $select-switch-color-font-active: white !default;
+$select-switch-border-radius: 5px !default;
 
 select-switch {
 	.switch-wrapper {
 		display: flex;
 		flex-wrap: nowrap;
-		height: 40px;
-		margin-bottom: 20px;
+		height: 36px;
 
 		.input__short & {
 			margin-bottom: 0;
@@ -17,33 +17,31 @@ select-switch {
 
 	.switch-wrapper__button {
 		position: relative;
-		display: inline-block;
-		width: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		height: 100%;
-		padding: 0 20px;
-		line-height: 38px;
-		text-align: center;
+		width: 50%;
 		transition: all 0.3s;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		margin-bottom: 20px;
 		font-weight: 600;
 		font-size: $select-switch-font-size;
 		border: 1px solid $select-switch-color-border;
 
-		&:first-child() {
-			border-radius: 5px 0 0 5px;
-			border-right: none !important;
+		&:first-child {
+			border-radius: $select-switch-border-radius 0 0 $select-switch-border-radius;
+			border-right: none;
 		}
 
-		&:last-child() {
-			border-radius: 0 5px 5px 0;
-			border-left: none !important;
+		&:last-child {
+			border-radius: 0 $select-switch-border-radius $select-switch-border-radius 0;
+			border-left: none;
 		}
 
-		&:first-child() + :last-child() {
-			border-left: 1px solid $select-switch-color-border !important;
+		&:first-child + :last-child {
+			border-left: 1px solid $select-switch-color-border;
 		}
 	}
 

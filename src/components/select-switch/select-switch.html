@@ -1,9 +1,11 @@
 <div class="switch-wrapper">
 	<div
+		tappable
 		class="switch-wrapper__button"
-		[class.switch-wrapper__button--active]="selected == i"
-		*ngFor="let option of options; let i = index"
-		(click)="select(i)">
-		{{option}}
+		*ngFor="let option of options"
+		[class.switch-wrapper__button--active]="selectedValue == option.value"
+		(click)="setValue(option.value, $event)"
+	>
+		{{option.label}}
 	</div>
 </div>
