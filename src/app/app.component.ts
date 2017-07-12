@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TranslateService } from 'ng2-translate';
@@ -8,10 +8,12 @@ import { TranslateService } from 'ng2-translate';
 	templateUrl: 'app.html'
 })
 export class MyApp {
-	rootPage: string = 'Home';
+	public rootPage: string = 'Home';
+	public menuContent: any = {};
 
 	constructor(
 		private platform: Platform,
+		private events: Events,
 		private translate: TranslateService,
 		private statusBar: StatusBar,
 		private splashScreen: SplashScreen,
@@ -24,6 +26,12 @@ export class MyApp {
 
 			this.translate.setDefaultLang('en');
 			this.translate.use('en');
+		});
+
+		this.events.subscribe('menuContentUpdate', (menuData: any) => {
+			if (menuData) {
+				this.menuContent = menuData;
+			}
 		});
 	}
 }

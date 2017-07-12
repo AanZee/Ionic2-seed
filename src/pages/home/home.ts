@@ -22,6 +22,6 @@ export class Home {
 	}
 
 	openAbout(): void {
-		this.nav.push('About');
+		this.nav.push('About', { title: 'About' });
 	}
 }

@@ -1,1 +1,21 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+
+<ion-menu side="right" type="overlay" [swipeEnabled]="false" [content]="content">
+	<ion-header>
+		<ion-navbar>
+			<ion-title>
+				{{ menuContent.title }}
+			</ion-title>
+			<ion-buttons end>
+				<button ion-button menuToggle color="primary-dark">
+					<ion-icon name="md-close"></ion-icon>
+				</button>
+			</ion-buttons>
+		</ion-navbar>
+	</ion-header>
+
+	<ion-content>
+		<p class="gradient-background__header" *ngIf="menuContent.header">{{ menuContent.header }}</p>
+		<div class="gradient-background__content" [innerHTML]="menuContent.content"></div>
+	</ion-content>
+</ion-menu>

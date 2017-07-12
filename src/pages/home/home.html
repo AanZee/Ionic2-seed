@@ -15,7 +15,10 @@
 		</p>
 		<button ion-button (click)="openAbout()">About</button>
 
-		<select-switch [options]="['1', '2']"></select-switch>
+		<select-switch [options]="[
+			{ label: 'One', value: '1'},
+			{ label: 'Two', value: '2'}
+		]"></select-switch>
 	</div>
 
 </ion-content>

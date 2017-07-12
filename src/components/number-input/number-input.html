@@ -1,0 +1,13 @@
+<div class="number-input">
+	<button ion-button class="number-input__button" *ngIf="!isEditDisabled" (click)="subtract($event)">
+		<ion-icon name="remove"></ion-icon>
+	</button>
+	<ion-input
+		type="number"
+		class="number-input__input"
+		[(ngModel)]="value"
+	></ion-input>
+	<button ion-button class="number-input__button" *ngIf="!isEditDisabled" (click)="increment($event)">
+		<ion-icon name="add"></ion-icon>
+	</button>
+</div>

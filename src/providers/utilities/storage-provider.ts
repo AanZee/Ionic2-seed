@@ -10,17 +10,26 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class StorageProvider {
-	private user_id: any;
+	private userId: any;
+	private userIdKey: string = 'auth-token';
 
 	constructor(
 		private events: Events,
 		private storage: Storage,
 	) {
-		this.user_id = localStorage.getItem('user_id');
+		this.userId = this.getUserId();
 
 		this.events.subscribe('user+logout', () => {
-			this.user_id = null;
+			this.userId = null;
 		});
+	}
+
+	/**
+	 * Get a user-unique key for storage
+	 * @return string - User-unique key
+	 */
+	public getUserId(): string {
+		return (localStorage.getItem(this.userIdKey) || '00000').substr(0, 5);
 	}
 
 	/**
@@ -33,25 +42,22 @@ export class StorageProvider {
 
 	/**
 	* Get Cached Item
-	* @param {string} name - Cache key
-	* @param {string} location - API endpoint of cached item
-	* @param {number=} ttl - TTL in seconds (-1 to invalidate immediately)
-	* @returns {Promise<{}>}
+	* @param {string} name - Key name of item from store
+	* @returns {Promise<any>}
 	*/
 	public getItem(name: string): Promise<any> {
-		if (!this.user_id) {
-			this.user_id = localStorage.getItem('user_id');
+		if (!this.userId) {
+			this.userId = this.getUserId();
 		}
 
 		return new Promise((resolve: any, reject: any) => {
-			this.storage.get(name + '_' + this.user_id).then((cachedResult: string) => {
+			this.storage.get(name + '_' + this.userId).then((cachedResult: string) => {
 				if (cachedResult) {
 					let data: any = JSON.parse(cachedResult);
 					resolve(data.data);
 				} else {
 					resolve(undefined);
 				}
-
 			}).catch((err: any) => reject(err));
 		});
 	}
@@ -60,15 +66,15 @@ export class StorageProvider {
 	* Set Cached Item
 	* @param {string} name - Key name of item to store
 	* @param {any} data - Value of data to store
-	* @param {ttl=} ttl - TTL in seconds
+	* @returns {Promise<any>}
 	*/
-	public setItem(name: string, data: any): Promise<{}> {
-		if (!this.user_id) {
-			this.user_id = localStorage.getItem('user_id');
+	public setItem(name: string, data: any): Promise<any> {
+		if (!this.userId) {
+			this.userId = this.getUserId();
 		}
 
 		let value: string = JSON.stringify({ data: data });
-		return this.storage.set(name + '_' + this.user_id, value);
+		return this.storage.set(name + '_' + this.userId, value);
 	}
 
 	/**
@@ -77,10 +83,10 @@ export class StorageProvider {
 	* @returns {Promise<any>}
 	*/
 	public deleteItem(name: string): Promise<any> {
-		if (!this.user_id) {
-			this.user_id = localStorage.getItem('user_id');
+		if (!this.userId) {
+			this.userId = this.getUserId();
 		}
 
-		return this.storage.remove(name + '_' + this.user_id);
+		return this.storage.remove(name + '_' + this.userId);
 	}
 }

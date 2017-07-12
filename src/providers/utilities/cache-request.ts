@@ -31,11 +31,11 @@ export class CacheRequest {
 	* @param  {number}       ttl        Lifetime of the cache (in seconds)
 	* @return {Promise<any>}            [description]
 	*/
-	public fetch(endpoint: string, method: string, fresh?: boolean, hideLoader?: boolean, ttl?: number): Promise<any> {
+	public fetch(endpoint: string, method: string, params: any, fresh?: boolean, hideLoader?: boolean, ttl?: number): Promise<any> {
 		let key: string = method.split('&')[0];
 		return new Promise((resolve: any, reject: any) => {
 			if (fresh) {
-				this.serverRequest(endpoint, method, hideLoader).subscribe((data: any) => {
+				this.serverRequest(endpoint, method, params, hideLoader).subscribe((data: any) => {
 					if (data) {
 						if (this.debug) { console.log('from server:', method); }
 						this.requests[key] = { data: data, lifetime: ttl * 1000, timestamp: Date.now() };
@@ -61,7 +61,7 @@ export class CacheRequest {
 						resolve(this.requests[key].data);
 					} else {
 						if (this.debug) { console.log('from server:', method); }
-						this.serverRequest(endpoint, method, hideLoader).subscribe((data: any) => {
+						this.serverRequest(endpoint, method, params, hideLoader).subscribe((data: any) => {
 							if (data) {
 								this.requests[key] = { data: data, lifetime: ttl * 1000, timestamp: Date.now() };
 								this.save();
@@ -98,9 +98,9 @@ export class CacheRequest {
 	 * @param  {boolean}         hideLoader [description]
 	 * @return {Observable<any>}            [description]
 	 */
-	private serverRequest(endpoint: string, method: string, hideLoader?: boolean): Observable<any> {
+	private serverRequest(endpoint: string, method: string, params: any, hideLoader?: boolean): Observable<any> {
 		return this.apiGateway.get(
-			endpoint + method, {}, hideLoader
+			endpoint + method, params, hideLoader
 		);
 	}
 

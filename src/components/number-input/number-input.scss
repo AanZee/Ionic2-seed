@@ -1,0 +1,33 @@
+$number-input-color-background: white !default;
+$number-input-border: 1px solid gray !default;
+$number-input-border-radius: 5px !default;
+
+$number-input-toggle-color-background: #ddd !default;
+$number-input-toggle-border: 1px solid gray !default;
+$number-input-toggle-padding: 10px !default;
+$number-input-toggle-icon-size: 20px !default;
+
+number-input {
+	.number-input {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		position: relative;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+
+	.number-input__input {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		background: transparent;
+
+		input {
+			text-align: center;
+		}
+	}
+}

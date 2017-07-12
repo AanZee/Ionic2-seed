@@ -7,7 +7,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Platform } from 'ionic-angular';
 
-declare var QRScanner: any;
+declare let QRScanner: any;
 
 @Injectable()
 export class QrScanner {
