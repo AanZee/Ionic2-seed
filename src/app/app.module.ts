@@ -8,10 +8,11 @@ import { SharedModule } from './shared.module';
 import { ProvidersModule } from '../providers/providers.module';
 
 // Translate
-import { TranslateModule, TranslateStaticLoader, TranslateLoader, MissingTranslationHandler, MissingTranslationHandlerParams } from 'ng2-translate';
+import { TranslateModule, TranslateLoader, MissingTranslationHandler, MissingTranslationHandlerParams } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-export function createTranslateLoader(http: Http): TranslateStaticLoader {
-	return new TranslateStaticLoader(http, './assets/i18n', '.json');
+export function createTranslateLoader(http: Http) {
+	return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 export class MyMissingTranslationHandler implements MissingTranslationHandler {
@@ -32,14 +33,21 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
 		}),
 		SharedModule.forRoot(),
 		TranslateModule.forRoot({
-			provide: TranslateLoader,
-			useFactory: (createTranslateLoader),
-			deps: [Http]
+			loader: {
+				provide: TranslateLoader,
+				useFactory: (createTranslateLoader),
+				deps: [Http]
+			},
+			missingTranslationHandler: {
+				provide: MissingTranslationHandler,
+				useClass: MyMissingTranslationHandler
+			}
 		}),
 		ProvidersModule,
 	],
 	exports: [
 		ProvidersModule,
+		TranslateModule,
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [

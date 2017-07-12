@@ -11,18 +11,11 @@ import { Device } from '@ionic-native/device';
 import { AppVersion } from '@ionic-native/app-version';
 
 // Translate
-import { TranslateModule, MissingTranslationHandler, MissingTranslationHandlerParams } from 'ng2-translate';
+import { TranslateModule } from '@ngx-translate/core';
 
 // Modules
 import { PipesModule } from '../pipes/pipes.module';
 import { ComponentsModule } from '../components/components.module';
-
-export class MyMissingTranslationHandler implements MissingTranslationHandler {
-	handle(params: MissingTranslationHandlerParams): string {
-		console.warn('Missing translation', params);
-		return '...';
-	}
-}
 
 @NgModule({
 	declarations: [],
@@ -35,7 +28,6 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
 		AppVersion,
 
 		{ provide: ErrorHandler, useClass: IonicErrorHandler },
-		{ provide: MissingTranslationHandler, useClass: MyMissingTranslationHandler },
 	],
 	imports: [
 		PipesModule,
