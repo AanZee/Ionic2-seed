@@ -1,8 +1,8 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/v2/theming/
-$font-path: "../assets/fonts";
+$font-path: '../assets/fonts';
 
-@import "ionic.globals";
+@import 'ionic.globals';
 
 
 // Shared Variables
@@ -16,13 +16,14 @@ $font-path: "../assets/fonts";
 	@return rgba($color, $opacity);
 }
 
-$color-primary:               #008144;
-$color-secondary:             #013300;
-$color-text:                  #000;
-$color-border:                #9a9a9a;
-$color-background:            #fff;
-
-$font-primary:                arial, helvetica;
+$color-primary:			#008144;
+$color-secondary:		#013300;
+$color-text:			#000000;
+$color-border:			#9a9a9a;
+$color-background:		#ffffff;
+$color-error:			red;
+$color-success:			green;
+$font-primary:			arial, helvetica;
 
 
 // Named Color Variables
@@ -69,10 +70,10 @@ $colors: (
 // so that the above variables are used and Ionic's
 // default are overridden.
 
-@import "ionic.theme.default";
+@import 'ionic.theme.default';
 
 
 // Fonts
 // --------------------------------------------------
 
-@import "./fonts/fonts";
+@import './fonts/fonts';

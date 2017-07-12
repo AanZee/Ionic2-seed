@@ -1,19 +1,6 @@
 {
 	"exclude": [
-		"scss/main.scss",
-		"scss/vendors",
-		"scss/settings",
-		"scss/utilities",
-		"scss/fonts",
-		"scss/vendor-overrides/_vendor-overrides.scss",
-		"scss/reset/_reset.scss",
-		"scss/layout/_layout.scss",
-		"scss/typography/_typography.scss",
-		"scss/controls/_controls.scss",
-		"scss/components/_components.scss",
-		"scss/pages/_pages.scss",
-		"scss/themes/_themes.scss",
-		"scss/overrides/_overrides.scss"
+		"src/theme/variables.scss"
 	],
 	"always-semicolon": true,
 	"block-indent": "\t",
