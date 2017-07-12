@@ -5,6 +5,7 @@ import { Http } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { SharedModule } from './shared.module';
+import { ProvidersModule } from '../providers/providers.module';
 
 // Translate
 import { TranslateModule, TranslateStaticLoader, TranslateLoader, MissingTranslationHandler, MissingTranslationHandlerParams } from 'ng2-translate';
@@ -35,6 +36,10 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
 			useFactory: (createTranslateLoader),
 			deps: [Http]
 		}),
+		ProvidersModule,
+	],
+	exports: [
+		ProvidersModule,
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [

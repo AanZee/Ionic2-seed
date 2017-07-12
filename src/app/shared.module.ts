@@ -14,7 +14,6 @@ import { AppVersion } from '@ionic-native/app-version';
 import { TranslateModule, MissingTranslationHandler, MissingTranslationHandlerParams } from 'ng2-translate';
 
 // Modules
-import { ProvidersModule } from '../providers/providers.module';
 import { PipesModule } from '../pipes/pipes.module';
 import { ComponentsModule } from '../components/components.module';
 
@@ -41,13 +40,11 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
 	imports: [
 		PipesModule,
 		ComponentsModule,
-		ProvidersModule,
 
 		HttpModule,
 		IonicStorageModule.forRoot(),
 	],
 	exports: [
-		ProvidersModule,
 		PipesModule,
 		ComponentsModule,
 
