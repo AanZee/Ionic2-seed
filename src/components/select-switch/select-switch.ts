@@ -1,7 +1,6 @@
 import { Component, forwardRef, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS } from '@angular/forms';
 
-
 export interface IComponentSelectSwitchOption {
 	label: string;
 	value: string | number;

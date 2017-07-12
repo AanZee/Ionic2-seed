@@ -30,19 +30,21 @@ export class S3Upload {
 
 	public imageObservable: Observable<any>;
 
-	constructor() {
+	constructor(
+		private settings: Settings,
+	) {
 		this.imageObservable = this.imageSubject.asObservable();
 
 		this.uploader = new qq.s3.FineUploaderBasic({
 			request: {
-				endpoint: Settings.s3.endpoint,
-				accessKey: Settings.s3.accesskey
+				endpoint: this.settings.s3.endpoint,
+				accessKey: this.settings.s3.accesskey
 			},
 			signature: {
-				endpoint: Settings.apiEndpoint + 's3upload.signature'
+				endpoint: this.settings.apiEndpoint + 's3upload.signature'
 			},
 			uploadSuccess: {
-				endpoint: Settings.apiEndpoint + 's3upload.success'
+				endpoint: this.settings.apiEndpoint + 's3upload.success'
 			},
 			objectProperties: {
 				acl: 'public-read',
@@ -62,7 +64,7 @@ export class S3Upload {
 				}
 			},
 			iframeSupport: {
-				localBlankPagePath: Settings.apiEndpoint + 's3upload.blank'
+				localBlankPagePath: this.settings.apiEndpoint + 's3upload.blank'
 			},
 			// optional feature
 			chunking: {
@@ -74,12 +76,18 @@ export class S3Upload {
 				sizeLimit: 0 //in bytes
 			},
 			callbacks: {
-				onSubmitted: (id: number, name: string) => { this.onSubmitted(id, name); },
-				onComplete: (id: number, name: string, responseJSON: any) => { this.onComplete(id, name, responseJSON); },
-				onAllComplete: () => { this.onAllComplete(); }
+				onSubmitted: (id: number, name: string) => {
+					this.onSubmitted(id, name);
+				},
+				onComplete: (id: number, name: string, responseJSON: any) => {
+					this.onComplete(id, name, responseJSON);
+				},
+				onAllComplete: () => {
+					this.onAllComplete();
+				}
 			}
 		});
-	};
+	}
 
 	addFile(reference: any): void {
 		if (typeof reference === 'object') {
@@ -87,24 +95,26 @@ export class S3Upload {
 		} else {
 			this.uploader.addBlobs(this.b64toBlob(reference));
 		}
-	};
+	}
 
 	uploadStoredFiles(): void {
 		this.uploader.uploadStoredFiles();
-	};
+	}
 
 	setPrefix(prefix: string): void {
 		this.prefix = prefix;
-	};
+	}
 
 	// Event methods
-	onSubmitted(id: number, name: string): void {};
+	onSubmitted(id: number, name: string): void {
+	}
 
 	onComplete(id: number, name: string, responseJSON: any): void {
 		this.imageSubject.next(name);
-	};
+	}
 
-	onAllComplete(): void {};
+	onAllComplete(): void {
+	}
 
 	private b64toBlob(b64Data: string, contentType?: string, sliceSize?: number): Blob {
 		contentType = contentType || '';
@@ -113,12 +123,12 @@ export class S3Upload {
 		let byteCharacters: string = atob(b64Data);
 		let byteArrays: any[] = [];
 
-		for (var offset: number = 0; offset < byteCharacters.length; offset += sliceSize) {
+		for (let offset: number = 0; offset < byteCharacters.length; offset += sliceSize) {
 			let slice: string = byteCharacters.slice(offset, offset + sliceSize);
 
 			let byteNumbers: any[] = new Array(slice.length);
-			for (let i = 0; i < slice.length; i++) {
-				byteNumbers[i] = slice.charCodeAt(i);
+			for (let sliceIndex: number = 0; sliceIndex < slice.length; sliceIndex++) {
+				byteNumbers[sliceIndex] = slice.charCodeAt(sliceIndex);
 			}
 			let byteArray: Uint8Array = new Uint8Array(byteNumbers);
 			byteArrays.push(byteArray);
@@ -126,5 +136,5 @@ export class S3Upload {
 
 		let blob: Blob = new Blob(byteArrays, { type: contentType });
 		return blob;
-	};
+	}
 }

@@ -41,7 +41,7 @@ import { Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { Observable } from 'rxjs/Rx';
 
-declare var FCMPlugin;
+declare let FCMPlugin: any;
 
 @Injectable()
 export class PushNotificationProvider {
@@ -55,7 +55,7 @@ export class PushNotificationProvider {
 	constructor(
 		private platform: Platform,
 	) {
-		this.notificationObservable = Observable.create((subscriber) => {
+		this.notificationObservable = Observable.create((subscriber: any) => {
 			this.observer = subscriber;
 		});
 
@@ -68,9 +68,9 @@ export class PushNotificationProvider {
 
 				FCMPlugin.onNotification((data: any) => {
 					this.onNotificationReceived(data);
-				}, (msg) => {
+				}, (msg: any) => {
 					console.log('onNotification callback successfully registered:', msg);
-				}, (err) => {
+				}, (err: any) => {
 					console.log('Error registering onNotification callback:', err);
 				});
 			} else {
@@ -110,8 +110,8 @@ export class PushNotificationProvider {
 		let object: any = {};
 		if (this.platform.is('ios')) {
 			let customSettings: any = {};
-			for(let key in data) {
-				if (['wasTapped', 'from', 'collapse_key', 'notification'].indexOf(key) == -1) {
+			for (let key in data) {
+				if (['wasTapped', 'from', 'collapse_key', 'notification'].indexOf(key) === -1) {
 					customSettings[key] = data[key];
 				}
 			}
@@ -122,11 +122,11 @@ export class PushNotificationProvider {
 				fromBackground: data.wasTapped,
 				customSettings: customSettings,
 				originalObject: data
-			}
+			};
 		} else if (this.platform.is('android')) {
 			let customSettings: any = {};
-			for(let key in data) {
-				if (['wasTapped'].indexOf(key) == -1) {
+			for (let key in data) {
+				if (['wasTapped'].indexOf(key) === -1) {
 					customSettings[key] = data[key];
 				}
 			}
@@ -137,7 +137,7 @@ export class PushNotificationProvider {
 				fromBackground: data.wasTapped,
 				customSettings: customSettings,
 				originalObject: data
-			}
+			};
 		}
 		this.observer.next(object);
 	}

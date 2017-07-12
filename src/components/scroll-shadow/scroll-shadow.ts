@@ -15,11 +15,11 @@ export class ComponentScrollShadow {
 		 * see http://caniuse.com/#feat=background-attachment
 		 */
 		if (this.platform.is('ios')) {
-			elem.nativeElement.addEventListener('scroll', () => {
-				if (elem.nativeElement.scrollTop > 0) {
-					elem.nativeElement.classList.add('scroll_shadow--forced');
+			this.elem.nativeElement.addEventListener('scroll', () => {
+				if (this.elem.nativeElement.scrollTop > 0) {
+					this.elem.nativeElement.classList.add('scroll_shadow--forced');
 				} else {
-					elem.nativeElement.classList.remove('scroll_shadow--forced');
+					this.elem.nativeElement.classList.remove('scroll_shadow--forced');
 				}
 			});
 		}

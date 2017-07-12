@@ -94,9 +94,9 @@ export class Oauth {
 		let res: string[] = [];
 		let chars: string = 'abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789';
 
-		for (let i: number = 0; i < howMany; i++) {
+		for (let iterator: number = 0; iterator < howMany; iterator++) {
 			res.push(chars[Math.round((Math.random() * chars.length))]);
-		};
+		}
 
 		return res.join('');
 	}

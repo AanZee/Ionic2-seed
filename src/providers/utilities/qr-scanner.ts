@@ -62,17 +62,17 @@ export class QrScanner {
 	* [scanStop description]
 	*/
 	public scanStop(): void {
-		if (this.platform.is('cordova') && this.isScanning == true) {
+		if (this.platform.is('cordova') && this.isScanning === true) {
 			this.isScanning = false;
 			document.body.style.visibility = 'visible';
 
 			this.toggleLight(false);
 
-			QRScanner.cancelScan((status) => {
+			QRScanner.cancelScan((status: any) => {
 				console.log(status);
 			});
 
-			QRScanner.hide((status) => {
+			QRScanner.hide((status: any) => {
 				console.log(status);
 			});
 		}
@@ -84,11 +84,11 @@ export class QrScanner {
 	*/
 	public toggleLight(state?: boolean): void {
 		if (this.platform.is('cordova')) {
-			if (typeof state == 'undefined') {
+			if (typeof state === 'undefined') {
 				state = !this.isLightOn;
 			}
 			if (state) {
-				QRScanner.enableLight((err, status) => {
+				QRScanner.enableLight((err: any, status: any) => {
 					if (err) {
 						console.error(err);
 					} else {
@@ -96,7 +96,7 @@ export class QrScanner {
 					}
 				});
 			} else {
-				QRScanner.disableLight((err, status) => {
+				QRScanner.disableLight((err: any, status: any) => {
 					if (err) {
 						console.error(err);
 					} else {

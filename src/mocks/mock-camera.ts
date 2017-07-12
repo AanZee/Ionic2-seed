@@ -9,7 +9,7 @@ export class MockCamera extends Camera {
 			if (cordova) {
 				return super.getPicture(options);
 			}
-		} catch(error) {
+		} catch (error) {
 			return new Promise((resolve: any, reject: any) => {
 				navigator.getUserMedia({
 					audio: false,
@@ -25,12 +25,12 @@ export class MockCamera extends Camera {
 					canvas.style['z-index'] = '999';
 					video.src = window.URL.createObjectURL(stream);
 					video.play();
-					let context = canvas.getContext('2d');
+					let context: any = canvas.getContext('2d');
 					setTimeout(() => {
 						canvas.setAttribute('width', video.videoWidth + 'px');
 						canvas.setAttribute('height', video.videoHeight + 'px');
 						context.drawImage(video, 0, 0, canvas.width, canvas.height);
-						var data = canvas.toDataURL('image/jpg');
+						let data: any = canvas.toDataURL('image/jpg');
 						resolve(data);
 						document.body.removeChild(video);
 						document.body.removeChild(canvas);

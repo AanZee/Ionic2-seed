@@ -22,7 +22,7 @@ export class ComponentPasswordViewer {
 
 	constructor() {}
 
-	private toggleView(state?: boolean, event?: any): void {
+	public toggleView(state?: boolean, event?: any): void {
 		if (event) {
 			event.stopPropagation();
 			event.preventDefault();
