@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 
+import { Oauth } from './oauth';
 import { AuthToken } from './auth-token';
 
 export class ApiGatewayOptions {
@@ -20,9 +21,6 @@ export class ApiGateway {
 	// Define the internal Subject we'll use to push errors
 	private errorsSubject: Subject<any> = new Subject<any>();
 
-	// Provide the *public* Observable that clients can subscribe to
-	errorsObservable: Observable<any>;
-
 	// Define the internal Subject we'll use to push the command count
 	private pendingCommandsSubject: Subject<number> = new Subject<number>();
 	private pendingCommandCount: number = 0;
@@ -31,11 +29,15 @@ export class ApiGateway {
 	private loader: Loading;
 
 	// Provide the *public* Observable that clients can subscribe to
-	pendingCommandsObservable: Observable<number>;
+	public errorsObservable: Observable<any>;
+
+	// Provide the *public* Observable that clients can subscribe to
+	public pendingCommandsObservable: Observable<number>;
 
 	constructor(
 		private http: Http,
 		private loadingCtrl: LoadingController,
+		private oauth: Oauth,
 		private authToken: AuthToken,
 	) {
 		// Create our observables from the subjects
@@ -120,6 +122,22 @@ export class ApiGateway {
 		options.headers = (options.headers || {});
 		options.params = (options.params || {});
 		options.data = (options.data || {});
+
+		//add required Oauth parameters
+		let oauthParams: any = this.oauth.addOauthParameters();
+		for (let key in oauthParams) {
+			if (oauthParams.hasOwnProperty(key)) {
+				options.params[key] = oauthParams[key];
+			}
+		}
+
+		//calculate signature and add to params
+		let parsedUrl: any = this.oauth.parseUrl(options.url);
+		options.params['oauth_signature'] = this.oauth.generateOauthSignature(
+			RequestMethod[options.method],
+			parsedUrl.baseUrl,
+			this.oauth.combineHash(options.params, parsedUrl.params)
+		);
 
 		this.interpolateUrl(options);
 		//this.addXsrfToken(options);

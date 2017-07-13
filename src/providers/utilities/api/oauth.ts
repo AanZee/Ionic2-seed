@@ -25,14 +25,11 @@ export class Oauth {
 		return { baseUrl: baseUrl, params: params };
 	}
 
-	combineHash(origHash: any, newHash: any): Object {
-		let hashString: string = JSON.stringify(origHash);
-		let hash: any = JSON.parse(hashString);
-
-		for (let key in newHash) {
-			hash[key] = newHash[key];
-		}
-		return hash;
+	combineHash(origHash: Object, newHash: Object): Object {
+		return {
+			...origHash,
+			...newHash
+		};
 	}
 
 	generateOauthSignature(httpMethod: string, url: string, params: any): string {
@@ -41,7 +38,7 @@ export class Oauth {
 		baseString += '&' + this.Rfc3986(url);
 		baseString += '&' + this.Rfc3986(this.normalize(params));
 
-		let signingKey: string = this.settings.oAuth.consumer.secret + '&';    //no need for TOKEN_SECRET
+		let signingKey: string = this.settings.oAuth.consumer.secret + '&'; // No need for TOKEN_SECRET
 
 		return CryptoJS.enc.Base64.stringify(CryptoJS.HmacSHA1(baseString, signingKey));
 	}
@@ -57,7 +54,7 @@ export class Oauth {
 			sortedKeys.sort();
 		}
 
-		//concatenate
+		// Concatenate
 		let normalizedParameters: string[] = [];
 		for (let i: number = 0; i < sortedKeys.length; i++) {
 			let key: string = decodeURIComponent(sortedKeys[i]);
@@ -97,7 +94,6 @@ export class Oauth {
 		for (let iterator: number = 0; iterator < howMany; iterator++) {
 			res.push(chars[Math.round((Math.random() * chars.length))]);
 		}
-
 		return res.join('');
 	}
 }
