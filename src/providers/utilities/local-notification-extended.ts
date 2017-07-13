@@ -27,12 +27,18 @@ export class LocalNotificationExtended extends LocalNotifications {
 		return options;
 	}
 
-	schedule(options?: ILocalNotification): void {
-		options = this.hotfixRunOnce(options);
+	public schedule(options: ILocalNotification | ILocalNotification[]): void {
+		if (options instanceof Array) {
+			options.forEach((option: any) => {
+				option = this.hotfixRunOnce(option);
+			});
+		} else {
+			options = this.hotfixRunOnce(options);
+		}
 		super.schedule(options);
 	}
 
-	on(eventName: string, callback: any): void {
+	public on(eventName: string, callback: any): void {
 		super.on(eventName, (notification: ILocalNotification) => {
 			if (notification.data && JSON.parse(notification.data).runOnce) {
 				super.cancel(notification.id);
