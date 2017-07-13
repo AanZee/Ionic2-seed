@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { Http } from '@angular/http';
@@ -6,6 +6,8 @@ import { Http } from '@angular/http';
 import { MyApp } from './app.component';
 import { SharedModule } from './shared.module';
 import { ProvidersModule } from '../providers/providers.module';
+
+import { HttpErrorHandler } from '../providers/utilities/api/http-error-handler';
 
 // Translate
 import { TranslateModule, TranslateLoader, MissingTranslationHandler, MissingTranslationHandlerParams } from '@ngx-translate/core';
@@ -53,6 +55,14 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
 	entryComponents: [
 		MyApp,
 	],
-	providers: []
+	providers: [
+		HttpErrorHandler,
+		{
+			provide: APP_INITIALIZER,
+			useFactory: (httpErrorHandler: HttpErrorHandler) => () => {},
+			deps: [HttpErrorHandler],
+			multi: true
+		},
+	]
 })
 export class AppModule {}

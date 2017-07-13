@@ -1,5 +1,4 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { IonicErrorHandler } from 'ionic-angular';
+import { NgModule } from '@angular/core';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
 
@@ -26,8 +25,6 @@ import { ComponentsModule } from '../components/components.module';
 		Keyboard,
 		Device,
 		AppVersion,
-
-		{ provide: ErrorHandler, useClass: IonicErrorHandler },
 	],
 	imports: [
 		PipesModule,
