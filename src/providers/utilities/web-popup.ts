@@ -36,7 +36,7 @@ export class WebPopup {
 						transition: 'curl',
 						enterReaderModeIfAvailable: false,
 						tintColor: '#fd8a4a'
-					}).then((result: any) => {
+					}).subscribe((result: any) => {
 						if (result.event === 'opened') {
 							console.log('Opened');
 						} else if (result.event === 'loaded') {
