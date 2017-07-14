@@ -19,7 +19,7 @@ import { Subject } from 'rxjs/Subject';
 
 import { Settings } from './app-settings';
 
-declare var qq: any;
+declare let qq: any;
 
 @Injectable()
 export class S3Upload {
