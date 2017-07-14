@@ -7,7 +7,12 @@ import { MyApp } from './app.component';
 import { SharedModule } from './shared.module';
 import { ProvidersModule } from '../providers/providers.module';
 
+// Http error handler
 import { HttpErrorHandler } from '../providers/utilities/api/http-error-handler';
+
+export function createHttpErrorHandler(httpErrorHandler: HttpErrorHandler) {
+	return () => {};
+}
 
 // Translate
 import { TranslateModule, TranslateLoader, MissingTranslationHandler, MissingTranslationHandlerParams } from '@ngx-translate/core';
@@ -37,7 +42,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
 		TranslateModule.forRoot({
 			loader: {
 				provide: TranslateLoader,
-				useFactory: (createTranslateLoader),
+				useFactory: createTranslateLoader,
 				deps: [Http]
 			},
 			missingTranslationHandler: {
@@ -59,7 +64,7 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler {
 		HttpErrorHandler,
 		{
 			provide: APP_INITIALIZER,
-			useFactory: (httpErrorHandler: HttpErrorHandler) => () => {},
+			useFactory: createHttpErrorHandler,
 			deps: [HttpErrorHandler],
 			multi: true
 		},
