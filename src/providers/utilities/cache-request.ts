@@ -44,6 +44,8 @@ export class CacheRequest {
 					}
 				});
 			} else {
+				let isDead: boolean = false;
+
 				if (this.requests[key]) {
 					if (this.requests[key].ttl > Date.now() - this.requests[key].timestamp) {
 						if (this.debug) { console.log('from cache:', method); }
@@ -51,11 +53,12 @@ export class CacheRequest {
 						return;
 					} else {
 						if (this.debug) { console.log('cache is pronounced dead:', method); }
+						isDead = true;
 					}
 				}
 
 				this.storageProvider.getItem(this.storageKey).then((storageData: any) => {
-					if (storageData && storageData[key]) {
+					if (!isDead && storageData && storageData[key]) {
 						if (this.debug) { console.log('from storage:', method); }
 						this.requests = storageData || {};
 						resolve(this.requests[key].data);
