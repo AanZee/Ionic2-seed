@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
 	selector: 'password-viewer',
-	templateUrl: 'password-viewer.html'
+	templateUrl: 'password-viewer.html',
 })
 export class ComponentPasswordViewer {
 	private _valueVisible: boolean = false;

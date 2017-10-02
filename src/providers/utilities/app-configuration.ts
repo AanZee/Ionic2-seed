@@ -23,6 +23,6 @@ export class Config {
 	// };
 	public static readonly image: any = {
 		width: 400,
-		height: 400
+		height: 400,
 	};
 }

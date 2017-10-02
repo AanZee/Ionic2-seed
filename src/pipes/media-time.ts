@@ -1,7 +1,7 @@
 import { Injectable, Pipe } from '@angular/core';
 
 @Pipe({
-	name: 'mediaTime'
+	name: 'mediaTime',
 })
 @Injectable()
 export class PipeMediaTime {

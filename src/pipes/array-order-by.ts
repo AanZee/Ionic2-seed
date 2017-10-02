@@ -1,13 +1,13 @@
 import { Pipe, Injectable } from '@angular/core';
 
 @Pipe({
-	name: 'orderArrayBy'
+	name: 'orderArrayBy',
 })
 @Injectable()
 export class PipeArrayOrderBy {
 
 	transform(list: any[], orderKeys: string[], orderDesc?: boolean): any {
-        if (list && list.length) {
+		if (list && list.length) {
 			list.sort((a: any, b: any) => {
 				let valA: any = a;
 				let valB: any = b;
@@ -27,8 +27,8 @@ export class PipeArrayOrderBy {
 
 			if (orderDesc) {
 				list = list.reverse();
-		    }
-        }
+			}
+		}
 		return list;
 	}
 }

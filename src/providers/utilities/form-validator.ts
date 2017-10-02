@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Utilities } from './app-utilities';
 import { TranslateService } from '@ngx-translate/core';
 import moment from 'moment';
+
+import {
+	Utilities,
+} from './app-utilities';
 
 @Injectable()
 export class FormValidator {

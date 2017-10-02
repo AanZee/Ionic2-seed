@@ -1,7 +1,7 @@
 import { Pipe, Injectable } from '@angular/core';
 
 @Pipe({
-	name: 'objectToArray'
+	name: 'objectToArray',
 })
 @Injectable()
 export class PipeObjectToArray {
@@ -13,7 +13,7 @@ export class PipeObjectToArray {
 				if (value.hasOwnProperty(key)) {
 					array.push({
 						key: key,
-						obj: value[key]
+						obj: value[key],
 					});
 				}
 			}

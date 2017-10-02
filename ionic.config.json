@@ -1,5 +1,8 @@
 {
   "name": "Ionic2 Seed",
   "app_id": "",
-  "type": "ionic-angular"
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
 }

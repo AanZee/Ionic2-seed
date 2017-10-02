@@ -8,7 +8,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
-import { ApiGateway } from './api/api-gateway';
+import { ApiGateway } from './api';
 import { StorageProvider } from './storage-provider';
 
 @Injectable()
@@ -103,7 +103,7 @@ export class CacheRequest {
 	 */
 	private serverRequest(endpoint: string, method: string, params: any, hideLoader?: boolean): Observable<any> {
 		return this.apiGateway.get(
-			endpoint + method, params, hideLoader
+			endpoint + method, params, hideLoader,
 		);
 	}
 

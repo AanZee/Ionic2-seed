@@ -54,6 +54,13 @@
 			"check-operator",
 			"check-separator",
 			"check-type"
+		],
+		"trailing-comma": [
+			true,
+			{
+				"multiline": "always",
+				"singleline": "never"
+			}
 		]
 	},
 	"rulesDirectory": [

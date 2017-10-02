@@ -5,7 +5,7 @@ import { FormValidator } from '../../providers/utilities/form-validator';
 
 @Component({
 	selector: 'form-error-message',
-	template: '<div *ngIf="errorMessage !== null">{{errorMessage}}</div>'
+	template: '<div *ngIf="errorMessage !== null">{{errorMessage}}</div>',
 })
 export class ComponentFormControlMessage {
 	@Input() control: FormControl;

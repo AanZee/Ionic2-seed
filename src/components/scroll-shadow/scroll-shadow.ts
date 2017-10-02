@@ -2,13 +2,13 @@ import { Directive, ElementRef } from '@angular/core';
 import { Platform } from 'ionic-angular';
 
 @Directive({
-	selector: '[scroll-shadow]'
+	selector: '[scroll-shadow]',
 })
 export class ComponentScrollShadow {
 
 	constructor(
 		private elem: ElementRef,
-		private platform: Platform
+		private platform: Platform,
 	) {
 		/**
 		 * Workaround for 'background-attachment: local' not working in combination with '-webkit-overflow-scrolling: touch'
