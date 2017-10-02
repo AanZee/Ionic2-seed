@@ -42,28 +42,6 @@ $colors: (
 	dark:       $color-text
 );
 
-
-// App iOS Variables
-// --------------------------------------------------
-// iOS only Sass variables can go here
-
-
-
-
-// App Material Design Variables
-// --------------------------------------------------
-// Material Design only Sass variables can go here
-
-
-
-
-// App Windows Variables
-// --------------------------------------------------
-// Windows only Sass variables can go here
-
-
-
-
 // App Theme
 // --------------------------------------------------
 // Ionic apps can have different themes applied, which can
@@ -73,8 +51,4 @@ $colors: (
 
 @import 'ionic.theme.default';
 
-
-// Fonts
-// --------------------------------------------------
-
-@import './fonts/fonts';
+@import './scss/index';
