@@ -136,7 +136,7 @@ export class ApiGateway {
 		options.params['oauth_signature'] = this.oauth.generateOauthSignature(
 			RequestMethod[options.method],
 			parsedUrl.baseUrl,
-			this.oauth.combineHash(options.params, parsedUrl.params)
+			this.oauth.combineHash(options.params, parsedUrl.params),
 		);
 
 		this.interpolateUrl(options);
@@ -166,7 +166,7 @@ export class ApiGateway {
 				this.loader = this.loadingCtrl.create({
 					showBackdrop: false,
 					spinner: 'circles',
-					duration: 15000
+					duration: 15000,
 				});
 				this.loader.present();
 			}
@@ -256,7 +256,7 @@ export class ApiGateway {
 				// If a matching value couldn't be found, just replace
 				// the token with the empty string.
 				return ('');
-			}
+			},
 		);
 		// Clean up any repeating slashes.
 		//options.url = options.url.replace(/\/{2,}/g, "/");
@@ -276,12 +276,12 @@ export class ApiGateway {
 				status: error.status,
 				statusText: error.statusText,
 				url: error.url,
-				message: original
+				message: original,
 			});
 		} catch (jsonError) {
 			return ({
 				code: -1,
-				message: 'An unexpected error occurred.'
+				message: 'An unexpected error occurred.',
 			});
 		}
 	}

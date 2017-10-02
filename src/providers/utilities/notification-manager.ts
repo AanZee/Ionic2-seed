@@ -8,8 +8,8 @@
 import { Injectable } from '@angular/core';
 
 import { ILocalNotification } from '@ionic-native/local-notifications';
-import { LocalNotificationProvider, ILocalNotificationCopy } from './local-notification-provider';
 
+import { LocalNotificationProvider, ILocalNotificationCopy } from './local-notification-provider';
 import { StorageProvider } from './storage-provider';
 
 @Injectable()

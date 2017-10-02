@@ -10,8 +10,8 @@ export function createCounterRangeValidator(options: any[]): any {
 	return (c: FormControl) => {
 		let err: any = {
 			invalidValueError: {
-				given: c.value
-			}
+				given: c.value,
+			},
 		};
 		// Check if value is set and value exists in given options
 		return (!c.value || !options.find((option: IComponentSelectSwitchOption) => option.value === c.value)) ? err : null;
@@ -23,8 +23,8 @@ export function createCounterRangeValidator(options: any[]): any {
 	templateUrl: 'select-switch.html',
 	providers: [
 		{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => ComponentSelectSwitch), multi: true },
-		{ provide: NG_VALIDATORS, useExisting: forwardRef(() => ComponentSelectSwitch), multi: true }
-	]
+		{ provide: NG_VALIDATORS, useExisting: forwardRef(() => ComponentSelectSwitch), multi: true },
+	],
 })
 export class ComponentSelectSwitch implements ControlValueAccessor, OnChanges {
 	propagateChange: Function = () => {};

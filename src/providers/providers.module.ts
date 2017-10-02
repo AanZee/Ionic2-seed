@@ -29,6 +29,6 @@ export function httpErrorHandler(httpErrorHandler: HttpErrorHandler): any {
 		Utilities,
 		StorageProvider,
 		CacheRequest,
-	]
+	],
 })
 export class ProvidersModule {}

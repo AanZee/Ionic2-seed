@@ -18,13 +18,13 @@ export class ExampleProvider {
 	public getData(hideLoader?: boolean): Observable<any> {
 		let method: string = 'data.get';
 		return this.apiGateway.get(
-			this.settings.apiEndpoint + method, {}, !!hideLoader
+			this.settings.apiEndpoint + method, {}, !!hideLoader,
 		);
 	}
 	public postData(post_data: any, hideLoader?: boolean): Observable<any> {
 		let method: string = 'data.post';
 		return this.apiGateway.post(
-			this.settings.apiEndpoint + method, {}, post_data, !!hideLoader
+			this.settings.apiEndpoint + method, {}, post_data, !!hideLoader,
 		);
 	}
 

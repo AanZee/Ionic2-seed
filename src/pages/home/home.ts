@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 @IonicPage()
 @Component({
 	selector: 'page-home',
-	templateUrl: 'home.html'
+	templateUrl: 'home.html',
 })
 export class Home {
 

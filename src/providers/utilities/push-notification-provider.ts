@@ -7,33 +7,30 @@
  *         - copy 'platforms/ios/GoogleService-Info.plist' into the root of the Xcode project (drag/drop). *
  *         - enable push notification in Xcode project                                                     *
  * - Add to `config/copy.config.js`                                                                        *
- * ```                                                                                                     *
- *     //Copy Firebase config file build folder                                                            *
- *     let copyGoogleServicesAndroid = {                                                                   *
- *         src: ['{{ROOT}}/src/assets/google-services.json'],                                              *
- *         dest: '{{ROOT}}/platforms/android'                                                              *
- *     }                                                                                                   *
- *     orgCopyConfig.copyGoogleServicesAndroid = copyGoogleServicesAndroid;                                *
- *                                                                                                         *
- *     let copyGoogleServicesIos = {                                                                       *
- *         src: ['{{ROOT}}/src/assets/GoogleService-Info.plist'],                                          *
- *         dest: '{{ROOT}}/platforms/ios'                                                                  *
- *     }                                                                                                   *
- *     orgCopyConfig.copyGoogleServicesIos = copyGoogleServicesIos;                                        *
- *                                                                                                         *
- *     //Copy Firebase config file to root folder (circumvent an error)                                    *
- *     let copyGoogleServicesAndroidToRoot = {                                                             *
- *         src: ['{{ROOT}}/src/assets/google-services.json'],                                              *
- *         dest: '{{ROOT}}'                                                                                *
- *     }                                                                                                   *
- *     orgCopyConfig.copyGoogleServicesAndroidToRoot = copyGoogleServicesAndroidToRoot;                    *
- *                                                                                                         *
- *     let copyGoogleServicesIosToRoot = {                                                                 *
- *         src: ['{{ROOT}}/src/assets/GoogleService-Info.plist'],                                          *
- *         dest: '{{ROOT}}'                                                                                *
- *     }                                                                                                   *
- *     orgCopyConfig.copyGoogleServicesIosToRoot = copyGoogleServicesIosToRoot;                            *
- * ```                                                                                                     *
+```
+//Copy Firebase config file build folder
+let copyGoogleServicesAndroid = {
+	src: ['{{ROOT}}/src/assets/google-services.json'],
+	dest: '{{ROOT}}/platforms/android'
+}
+orgCopyConfig.copyGoogleServicesAndroid = copyGoogleServicesAndroid;
+let copyGoogleServicesIos = {
+	src: ['{{ROOT}}/src/assets/GoogleService-Info.plist'],
+	dest: '{{ROOT}}/platforms/ios'
+}
+orgCopyConfig.copyGoogleServicesIos = copyGoogleServicesIos;
+//Copy Firebase config file to root folder (circumvent an error)
+let copyGoogleServicesAndroidToRoot = {
+	src: ['{{ROOT}}/src/assets/google-services.json'],
+	dest: '{{ROOT}}'
+}
+orgCopyConfig.copyGoogleServicesAndroidToRoot = copyGoogleServicesAndroidToRoot;
+let copyGoogleServicesIosToRoot = {
+	src: ['{{ROOT}}/src/assets/GoogleService-Info.plist'],
+	dest: '{{ROOT}}'
+}
+orgCopyConfig.copyGoogleServicesIosToRoot = copyGoogleServicesIosToRoot;
+```
  ***********************************************************************************************************/
 
 
@@ -121,7 +118,7 @@ export class PushNotificationProvider {
 				content: data.aps.alert.body,
 				fromBackground: data.wasTapped,
 				customSettings: customSettings,
-				originalObject: data
+				originalObject: data,
 			};
 		} else if (this.platform.is('android')) {
 			let customSettings: any = {};
@@ -136,7 +133,7 @@ export class PushNotificationProvider {
 				content: '',
 				fromBackground: data.wasTapped,
 				customSettings: customSettings,
-				originalObject: data
+				originalObject: data,
 			};
 		}
 		this.observer.next(object);

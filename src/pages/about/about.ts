@@ -3,11 +3,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 
 @IonicPage({
-	segment: 'about/:title'
+	segment: 'about/:title',
 })
 @Component({
 	selector: 'page-about',
-	templateUrl: 'about.html'
+	templateUrl: 'about.html',
 })
 export class About {
 	public title: string = this.navParams.get('title');

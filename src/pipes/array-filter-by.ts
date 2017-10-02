@@ -1,7 +1,7 @@
 import { Pipe, Injectable } from '@angular/core';
 
 @Pipe({
-	name: 'filterArrayBy'
+	name: 'filterArrayBy',
 })
 @Injectable()
 export class PipeArrayFilterBy {
