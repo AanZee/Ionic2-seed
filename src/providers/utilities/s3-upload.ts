@@ -38,13 +38,13 @@ export class S3Upload {
 		this.uploader = new qq.s3.FineUploaderBasic({
 			request: {
 				endpoint: this.settings.s3.endpoint,
-				accessKey: this.settings.s3.accesskey
+				accessKey: this.settings.s3.accesskey,
 			},
 			signature: {
-				endpoint: this.settings.apiEndpoint + 's3upload.signature'
+				endpoint: this.settings.apiEndpoint + 's3upload.signature',
 			},
 			uploadSuccess: {
-				endpoint: this.settings.apiEndpoint + 's3upload.success'
+				endpoint: this.settings.apiEndpoint + 's3upload.success',
 			},
 			objectProperties: {
 				acl: 'public-read',
@@ -61,19 +61,19 @@ export class S3Upload {
 					this.uploader.setName(fileId, newName);
 
 					return newName;
-				}
+				},
 			},
 			iframeSupport: {
-				localBlankPagePath: this.settings.apiEndpoint + 's3upload.blank'
+				localBlankPagePath: this.settings.apiEndpoint + 's3upload.blank',
 			},
 			// optional feature
 			chunking: {
-				enabled: true
+				enabled: true,
 			},
 			// optional feature
 			validation: {
 				itemLimit: 0,
-				sizeLimit: 0 //in bytes
+				sizeLimit: 0, //in bytes
 			},
 			callbacks: {
 				onSubmitted: (id: number, name: string) => {
@@ -84,8 +84,8 @@ export class S3Upload {
 				},
 				onAllComplete: () => {
 					this.onAllComplete();
-				}
-			}
+				},
+			},
 		});
 	}
 

@@ -3,7 +3,6 @@
  * - `cordova-plugin-qrscanner` plugin *
  ***************************************/
 
-
 import { Injectable, NgZone } from '@angular/core';
 import { Platform } from 'ionic-angular';
 

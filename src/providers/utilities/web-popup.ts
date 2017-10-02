@@ -35,7 +35,7 @@ export class WebPopup {
 						animated: false,
 						transition: 'curl',
 						enterReaderModeIfAvailable: false,
-						tintColor: '#fd8a4a'
+						tintColor: '#fd8a4a',
 					}).subscribe((result: any) => {
 						if (result.event === 'opened') {
 							console.log('Opened');

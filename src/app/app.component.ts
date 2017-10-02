@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-	templateUrl: 'app.html'
+	templateUrl: 'app.html',
 })
 export class MyApp {
 	public rootPage: string = 'Home';

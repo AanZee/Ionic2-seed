@@ -38,13 +38,13 @@ import { ComponentsModule } from '../components/components.module';
 		ComponentsModule,
 
 		TranslateModule,
-	]
+	],
 })
 export class SharedModule {
 
 	static forRoot(): any {
 		return {
-			ngModule: SharedModule
+			ngModule: SharedModule,
 		};
 	}
 }

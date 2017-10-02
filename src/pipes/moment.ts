@@ -8,7 +8,7 @@ import { Pipe, Injectable } from '@angular/core';
 import { default as moment } from 'moment';
 
 @Pipe({
-	name: 'moment'
+	name: 'moment',
 })
 @Injectable()
 export class PipeMoment {

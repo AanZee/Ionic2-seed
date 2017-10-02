@@ -31,17 +31,17 @@ export class Settings {
 	public readonly oAuth: any = {
 		consumer: {
 			key: '',
-			secret: ''
+			secret: '',
 		},
 		signatureMethod: 'HMAC-SHA1',
-		version: '1.0'
+		version: '1.0',
 	};
 	public readonly imgEndpoint: string = '';
 	public readonly videoEndpoint: string = '';
 	public readonly fileEndpoint: string = '';
 	public readonly s3: any = {
 		endpoint: '',
-		accesskey: ''
+		accesskey: '',
 	};
 	public readonly gaId: string = '';
 }

@@ -22,7 +22,7 @@ import { ComponentSelectSwitch } from './select-switch/select-switch';
 		ComponentSelectSwitch,
 	],
 	imports: [
-		IonicModule
+		IonicModule,
 	],
 	exports: [
 		ComponentButtonToolbar,
@@ -33,6 +33,6 @@ import { ComponentSelectSwitch } from './select-switch/select-switch';
 		ComponentPasswordViewer,
 		ComponentScrollShadow,
 		ComponentSelectSwitch,
-	]
+	],
 })
 export class ComponentsModule {}

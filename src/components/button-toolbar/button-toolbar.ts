@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core
 
 @Component({
 	selector: 'button-toolbar',
-	templateUrl: 'button-toolbar.html'
+	templateUrl: 'button-toolbar.html',
 })
 export class ComponentButtonToolbar {
 	@ViewChild('buttonToolbar') button_toolbar: any;
@@ -24,9 +24,9 @@ export class ComponentButtonToolbar {
 	private ready: boolean = false;
 
 	constructor(
-		private platform: Platform
+		private platform: Platform,
 	) {
-		platform.ready().then(() => {
+		this.platform.ready().then(() => {
 			this.ready = true;
 		});
 

@@ -20,6 +20,6 @@ import { PipeArrayOrderBy } from './array-order-by';
 		PipeObjectToArray,
 		PipeArrayFilterBy,
 		PipeArrayOrderBy,
-	]
+	],
 })
 export class PipesModule {}

@@ -14,6 +14,6 @@ import { SharedModule } from '../../app/shared.module';
 	],
 	exports: [
 		About,
-	]
+	],
 })
 export class AboutModule {}

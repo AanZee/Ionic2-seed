@@ -28,7 +28,7 @@ export class Oauth {
 	combineHash(origHash: Object, newHash: Object): Object {
 		return {
 			...origHash,
-			...newHash
+			...newHash,
 		};
 	}
 

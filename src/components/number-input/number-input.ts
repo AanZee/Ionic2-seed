@@ -5,8 +5,8 @@ export function createSelectionValidator(): any {
 	return (c: FormControl) => {
 		let err: any = {
 			invalidValueError: {
-				given: c.value
-			}
+				given: c.value,
+			},
 		};
 		// Check if value is set
 		return c.value ? err : null;
@@ -18,8 +18,8 @@ export function createSelectionValidator(): any {
 	templateUrl: 'number-input.html',
 	providers: [
 		{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => ComponentNumberInput), multi: true },
-		{ provide: NG_VALIDATORS, useExisting: forwardRef(() => ComponentNumberInput), multi: true }
-	]
+		{ provide: NG_VALIDATORS, useExisting: forwardRef(() => ComponentNumberInput), multi: true },
+	],
 })
 export class ComponentNumberInput implements ControlValueAccessor {
 	propagateChange: Function = () => {};
