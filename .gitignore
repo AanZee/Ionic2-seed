@@ -35,5 +35,6 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 
 # Custom ignored files
+*.png.md5
 /GoogleService-Info.plist
 /google-services.json
