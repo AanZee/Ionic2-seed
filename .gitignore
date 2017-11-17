@@ -38,3 +38,4 @@ UserInterfaceState.xcuserstate
 *.png.md5
 /GoogleService-Info.plist
 /google-services.json
+.sourcemaps
