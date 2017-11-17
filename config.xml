@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="nl.steven.ionic2seed" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="nl.steven.ionic2seed" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Ionic2 Seed</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
@@ -31,6 +31,10 @@
         <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
+        <config-file parent="./application" target="AndroidManifest.xml">
+            <meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/notification_icon" />
+            <meta-data android:name="com.google.firebase.messaging.default_notification_color" android:resource="@color/default" />
+        </config-file>
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -93,4 +97,5 @@
     <engine name="android" spec="~6.1.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="~1.1.11" />
     <plugin name="cordova-plugin-fcm" spec="~2.1.2" />
+    <plugin name="cordova-custom-config" spec="~4.0.2" />
 </widget>
