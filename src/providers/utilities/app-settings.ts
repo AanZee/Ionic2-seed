@@ -24,6 +24,7 @@ export class Settings {
 		: 'https://ti-vragenlijst.e-dev.nl'
 	);
 
+	public readonly appId: string = '';
 	public readonly apiEndpoint: string = this.baseUrl + '/api/index.cfm?act=';
 	public readonly apiLessonEndpoint: string = this.baseLessonUrl + '/api/index.cfm?act=';
 	public readonly imgBaseEndpoint: string = '';
